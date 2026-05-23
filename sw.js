@@ -1,10 +1,10 @@
-const CACHE_NAME = 'premodern-v1';
+const CACHE_NAME = 'premodern-v2';
 const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/premodern_cards_data.json',
-  '/premodern_combos.json',
-  '/manifest.json'
+  './',
+  './index.html',
+  './premodern_cards_data.json',
+  './premodern_combos.json',
+  './manifest.json'
 ];
 
 // Install: cache core assets
