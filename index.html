@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Premodern">
+    <meta name="theme-color" content="#e94560">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <title>Premodern Legal Cards</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #1a1a2e;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #16213e;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #0f3460;
+        }
+
+        header h1 {
+            color: #e94560;
+            font-size: 1.8em;
+            margin-bottom: 8px;
+        }
+
+        .stats {
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .controls {
+            padding: 15px 20px;
+            background: #16213e;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+            border-bottom: 1px solid #0f3460;
+        }
+
+        .controls input, .controls select {
+            padding: 8px 12px;
+            border: 1px solid #0f3460;
+            border-radius: 6px;
+            background: #1a1a2e;
+            color: #e0e0e0;
+            font-size: 0.9em;
+        }
+
+        .controls input { flex: 1; min-width: 200px; }
+
+        .tab-bar {
+            display: flex;
+            gap: 0;
+            padding: 0 20px;
+            background: #16213e;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            color: #888;
+            transition: all 0.2s;
+        }
+
+        .tab.active {
+            color: #e94560;
+            border-bottom-color: #e94560;
+        }
+
+        .tab:hover { color: #e0e0e0; }
+
+        .card-list {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card-item {
+            display: flex;
+            gap: 16px;
+            background: #16213e;
+            border-radius: 10px;
+            padding: 12px;
+            border: 1px solid #0f3460;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(233, 69, 96, 0.2);
+        }
+
+        .card-item.disputed {
+            border-color: #e94560;
+            background: #1a1a2e;
+        }
+
+        .card-image {
+            flex-shrink: 0;
+            width: 150px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .card-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .card-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .card-mana {
+            font-size: 0.9em;
+            color: #ffd700;
+        }
+
+        .card-type {
+            font-size: 0.85em;
+            color: #aaa;
+            font-style: italic;
+        }
+
+        .card-text {
+            font-size: 0.85em;
+            color: #ccc;
+            line-height: 1.4;
+            white-space: pre-line;
+            max-height: 100px;
+            overflow-y: auto;
+        }
+
+        .card-pt {
+            font-size: 0.9em;
+            color: #e94560;
+            font-weight: bold;
+        }
+
+        .card-price {
+            margin-top: auto;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            padding-top: 8px;
+            border-top: 1px solid #0f3460;
+        }
+
+        .price-tag {
+            background: #0f3460;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: #4ecca3;
+        }
+
+        .price-tag.foil {
+            color: #ffd700;
+        }
+
+        .cardmarket-link {
+            color: #e94560;
+            text-decoration: none;
+            font-size: 0.8em;
+        }
+
+        .cardmarket-link:hover { text-decoration: underline; }
+
+        .disputed-badge {
+            background: #e94560;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7em;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: #888;
+            font-size: 1.2em;
+        }
+
+        .color-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 3px;
+        }
+
+        .color-W { background: #f9faf4; }
+        .color-U { background: #0e68ab; }
+        .color-B { background: #150b00; border: 1px solid #555; }
+        .color-R { background: #d3202a; }
+        .color-G { background: #00733e; }
+
+        #card-count { color: #888; font-size: 0.85em; padding: 10px 20px; }
+
+        /* Combo styles */
+        .combo-list {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .combo-item {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #0f3460;
+        }
+
+        .combo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .combo-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #e94560;
+        }
+
+        .combo-archetype {
+            background: #0f3460;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            color: #4ecca3;
+        }
+
+        .combo-difficulty {
+            font-size: 0.8em;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+        }
+
+        .combo-difficulty.Facile { background: #2d6a4f; color: #b7e4c7; }
+        .combo-difficulty.Media { background: #e76f51; color: #fff; }
+        .combo-difficulty.Difficile { background: #9b2226; color: #fff; }
+
+        .combo-cards {
+            display: flex;
+            gap: 12px;
+            margin: 16px 0;
+            flex-wrap: wrap;
+        }
+
+        .combo-card {
+            text-align: center;
+            width: 130px;
+        }
+
+        .combo-card img {
+            width: 120px;
+            border-radius: 6px;
+            border: 2px solid #0f3460;
+            transition: transform 0.2s;
+        }
+
+        .combo-card img:hover {
+            transform: scale(1.5);
+            z-index: 10;
+            position: relative;
+        }
+
+        .combo-card-name {
+            font-size: 0.75em;
+            color: #aaa;
+            margin-top: 4px;
+        }
+
+        .combo-card-role {
+            font-size: 0.7em;
+            color: #4ecca3;
+            font-style: italic;
+        }
+
+        .combo-steps {
+            margin-top: 16px;
+            padding: 12px;
+            background: #1a1a2e;
+            border-radius: 8px;
+            border-left: 3px solid #e94560;
+        }
+
+        .combo-steps h4 {
+            color: #ffd700;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        .combo-steps ol {
+            padding-left: 20px;
+        }
+
+        .combo-steps li {
+            color: #ccc;
+            font-size: 0.85em;
+            line-height: 1.6;
+            margin-bottom: 6px;
+        }
+
+        .combo-result {
+            margin-top: 12px;
+            padding: 8px 12px;
+            background: #2d6a4f;
+            border-radius: 6px;
+            color: #b7e4c7;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .hidden { display: none; }
+
+        /* Mobile responsive */
+        @media (max-width: 600px) {
+            .card-item { flex-direction: column; gap: 10px; }
+            .card-image { width: 100%; max-width: 200px; margin: 0 auto; }
+            .controls { flex-direction: column; }
+            .controls input { min-width: 100%; }
+            .combo-cards { justify-content: center; }
+            .combo-card { width: 100px; }
+            .combo-card img { width: 90px; }
+            header h1 { font-size: 1.4em; }
+            .tab { padding: 8px 12px; font-size: 0.85em; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>⚔️ Premodern Legal Cards</h1>
+        <p class="stats" id="stats">Caricamento...</p>
+    </header>
+
+    <div class="controls">
+        <input type="text" id="search" placeholder="Cerca carta per nome...">
+        <select id="color-filter">
+            <option value="">Tutti i colori</option>
+            <option value="W">Bianco</option>
+            <option value="U">Blu</option>
+            <option value="B">Nero</option>
+            <option value="R">Rosso</option>
+            <option value="G">Verde</option>
+            <option value="multicolor">Multicolore</option>
+            <option value="colorless">Incolore</option>
+        </select>
+        <select id="type-filter">
+            <option value="">Tutti i tipi</option>
+            <option value="Creature">Creatura</option>
+            <option value="Instant">Istantaneo</option>
+            <option value="Sorcery">Stregoneria</option>
+            <option value="Enchantment">Incantesimo</option>
+            <option value="Artifact">Artefatto</option>
+            <option value="Land">Terra</option>
+        </select>
+        <select id="sort-by">
+            <option value="name">Nome</option>
+            <option value="price-desc">Prezzo ↓</option>
+            <option value="price-asc">Prezzo ↑</option>
+        </select>
+    </div>
+
+    <div class="tab-bar">
+        <div class="tab active" data-tab="legal">Carte Legali</div>
+        <div class="tab" data-tab="disputed">⚠ In Conflitto</div>
+        <div class="tab" data-tab="combos">🔥 Combo</div>
+    </div>
+
+    <div id="card-count"></div>
+    <div class="card-list" id="card-list">
+        <div class="loading">Caricamento dati...</div>
+    </div>
+    <div class="combo-list hidden" id="combo-list"></div>
+
+    <script>
+        let allData = { legal_cards: [], disputed_cards: [] };
+        let combosData = [];
+        let currentTab = 'legal';
+
+        async function loadData() {
+            try {
+                const response = await fetch('premodern_cards_data.json');
+                allData = await response.json();
+                document.getElementById('stats').textContent =
+                    `${allData.total_legal} carte legali | ${allData.total_disputed} in conflitto | Prezzi Cardmarket (via Scryfall)`;
+                renderCards();
+            } catch (e) {
+                document.getElementById('card-list').innerHTML =
+                    '<div class="loading">Errore: esegui prima fetch_premodern_data.py per generare i dati</div>';
+            }
+
+            try {
+                const comboResp = await fetch('premodern_combos.json');
+                combosData = await comboResp.json();
+            } catch (e) {
+                combosData = [];
+            }
+        }
+
+        function getCards() {
+            return currentTab === 'legal' ? allData.legal_cards : allData.disputed_cards;
+        }
+
+        function filterAndSort(cards) {
+            const search = document.getElementById('search').value.toLowerCase();
+            const colorFilter = document.getElementById('color-filter').value;
+            const typeFilter = document.getElementById('type-filter').value;
+            const sortBy = document.getElementById('sort-by').value;
+
+            let filtered = cards.filter(card => {
+                if (search && !card.name.toLowerCase().includes(search)) return false;
+
+                if (colorFilter) {
+                    if (colorFilter === 'multicolor') {
+                        if (card.colors.length < 2) return false;
+                    } else if (colorFilter === 'colorless') {
+                        if (card.colors.length > 0) return false;
+                    } else {
+                        if (!card.colors.includes(colorFilter)) return false;
+                    }
+                }
+
+                if (typeFilter && !card.type_line.includes(typeFilter)) return false;
+
+                return true;
+            });
+
+            filtered.sort((a, b) => {
+                if (sortBy === 'name') return a.name.localeCompare(b.name);
+                if (sortBy === 'price-desc') return (parseFloat(b.price_eur) || 0) - (parseFloat(a.price_eur) || 0);
+                if (sortBy === 'price-asc') return (parseFloat(a.price_eur) || 0) - (parseFloat(b.price_eur) || 0);
+                return 0;
+            });
+
+            return filtered;
+        }
+
+        function renderCards() {
+            const cards = filterAndSort(getCards());
+            const container = document.getElementById('card-list');
+            const countEl = document.getElementById('card-count');
+
+            countEl.textContent = `Mostrate: ${cards.length} carte`;
+
+            // Render solo le prime 50 per performance, lazy load il resto
+            const toRender = cards.slice(0, 100);
+
+            container.innerHTML = toRender.map(card => `
+                <div class="card-item ${card.status === 'disputed' ? 'disputed' : ''}">
+                    <div class="card-image">
+                        <img src="${card.image_url}" alt="${card.name}" loading="lazy">
+                    </div>
+                    <div class="card-details">
+                        <div>
+                            <span class="card-name">${card.name}</span>
+                            ${card.status === 'disputed' ? '<span class="disputed-badge">CONFLITTO</span>' : ''}
+                        </div>
+                        <div class="card-mana">${formatMana(card.mana_cost)}</div>
+                        <div class="card-type">${card.type_line}</div>
+                        <div class="card-text">${card.oracle_text || ''}</div>
+                        ${card.power ? `<div class="card-pt">${card.power}/${card.toughness}</div>` : ''}
+                        <div class="card-price">
+                            ${card.price_eur ? `<span class="price-tag">€${card.price_eur}</span>` : '<span class="price-tag">N/D</span>'}
+                            ${card.price_eur_foil ? `<span class="price-tag foil">Foil €${card.price_eur_foil}</span>` : ''}
+                            ${card.cardmarket_url ? `<a href="${card.cardmarket_url}" target="_blank" class="cardmarket-link">→ Cardmarket (prezzo live)</a>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Infinite scroll per il resto
+            if (cards.length > 100) {
+                let loaded = 100;
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting && loaded < cards.length) {
+                        const next = cards.slice(loaded, loaded + 50);
+                        container.insertAdjacentHTML('beforeend', next.map(card => `
+                            <div class="card-item ${card.status === 'disputed' ? 'disputed' : ''}">
+                                <div class="card-image">
+                                    <img src="${card.image_url}" alt="${card.name}" loading="lazy">
+                                </div>
+                                <div class="card-details">
+                                    <div>
+                                        <span class="card-name">${card.name}</span>
+                                        ${card.status === 'disputed' ? '<span class="disputed-badge">CONFLITTO</span>' : ''}
+                                    </div>
+                                    <div class="card-mana">${formatMana(card.mana_cost)}</div>
+                                    <div class="card-type">${card.type_line}</div>
+                                    <div class="card-text">${card.oracle_text || ''}</div>
+                                    ${card.power ? `<div class="card-pt">${card.power}/${card.toughness}</div>` : ''}
+                                    <div class="card-price">
+                                        ${card.price_eur ? `<span class="price-tag">€${card.price_eur}</span>` : '<span class="price-tag">N/D</span>'}
+                                        ${card.price_eur_foil ? `<span class="price-tag foil">Foil €${card.price_eur_foil}</span>` : ''}
+                                        ${card.cardmarket_url ? `<a href="${card.cardmarket_url}" target="_blank" class="cardmarket-link">→ Cardmarket (prezzo live)</a>` : ''}
+                                    </div>
+                                </div>
+                            </div>
+                        `).join(''));
+                        loaded += 50;
+                    }
+                });
+                const sentinel = document.createElement('div');
+                sentinel.style.height = '1px';
+                container.appendChild(sentinel);
+                observer.observe(sentinel);
+            }
+        }
+
+        function formatMana(manaCost) {
+            if (!manaCost) return '';
+            return manaCost
+                .replace(/\{W\}/g, '⚪')
+                .replace(/\{U\}/g, '🔵')
+                .replace(/\{B\}/g, '⚫')
+                .replace(/\{R\}/g, '🔴')
+                .replace(/\{G\}/g, '🟢')
+                .replace(/\{(\d+)\}/g, '$1')
+                .replace(/\{X\}/g, 'X')
+                .replace(/\{C\}/g, '◇');
+        }
+
+        // Event listeners
+        document.getElementById('search').addEventListener('input', renderCards);
+        document.getElementById('color-filter').addEventListener('change', renderCards);
+        document.getElementById('type-filter').addEventListener('change', renderCards);
+        document.getElementById('sort-by').addEventListener('change', renderCards);
+
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentTab = tab.dataset.tab;
+
+                if (currentTab === 'combos') {
+                    document.getElementById('card-list').classList.add('hidden');
+                    document.getElementById('combo-list').classList.remove('hidden');
+                    document.getElementById('card-count').textContent = `${combosData.length} combo conosciute`;
+                    renderCombos();
+                } else {
+                    document.getElementById('card-list').classList.remove('hidden');
+                    document.getElementById('combo-list').classList.add('hidden');
+                    renderCards();
+                }
+            });
+        });
+
+        function renderCombos() {
+            const container = document.getElementById('combo-list');
+            const search = document.getElementById('search').value.toLowerCase();
+
+            let filtered = combosData;
+            if (search) {
+                filtered = combosData.filter(c =>
+                    c.name.toLowerCase().includes(search) ||
+                    c.archetype.toLowerCase().includes(search) ||
+                    c.cards.some(card => card.name.toLowerCase().includes(search))
+                );
+            }
+
+            // Group by category
+            const categories = {};
+            filtered.forEach(combo => {
+                const cat = combo.category || combo.archetype;
+                if (!categories[cat]) categories[cat] = [];
+                categories[cat].push(combo);
+            });
+
+            let html = '';
+            const catOrder = ['Combo Creature-Based', 'Reanimator', 'Combo Incantesimi', 'Lock / Prison', 'Combo Control', 'Aggro-Combo', 'Combo Storm/Kill', 'Combo Artefatti', 'Altro'];
+
+            catOrder.forEach(catName => {
+                if (!categories[catName]) return;
+                html += `<div style="margin: 20px 0 10px; padding: 8px 16px; background: #0f3460; border-radius: 8px; font-size: 1.1em; color: #4ecca3; font-weight: bold;">
+                    ${catName} (${categories[catName].length})
+                </div>`;
+                html += categories[catName].map(combo => `
+                    <div class="combo-item">
+                        <div class="combo-header">
+                            <div>
+                                <span class="combo-name">${combo.name}</span>
+                                <span class="combo-difficulty ${combo.difficulty}">${combo.difficulty}</span>
+                            </div>
+                            <span class="combo-archetype">${combo.archetype}</span>
+                        </div>
+                        <div class="combo-cards">
+                            ${combo.cards.map(card => `
+                                <div class="combo-card">
+                                    <img src="https://api.scryfall.com/cards/named?exact=${encodeURIComponent(card.name)}&format=image&version=small" alt="${card.name}" loading="lazy">
+                                    <div class="combo-card-name">${card.name}</div>
+                                    <div class="combo-card-role">${card.role}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="combo-steps">
+                            <h4>📖 Come funziona (step by step):</h4>
+                            <ol>
+                                ${combo.steps.map(step => `<li>${step}</li>`).join('')}
+                            </ol>
+                        </div>
+                        <div class="combo-result">🏆 Risultato: ${combo.result}</div>
+                    </div>
+                `).join('');
+            });
+
+            // Any remaining categories not in catOrder
+            Object.keys(categories).forEach(catName => {
+                if (catOrder.includes(catName)) return;
+                html += `<div style="margin: 20px 0 10px; padding: 8px 16px; background: #0f3460; border-radius: 8px; font-size: 1.1em; color: #4ecca3; font-weight: bold;">
+                    ${catName} (${categories[catName].length})
+                </div>`;
+                html += categories[catName].map(combo => `
+                    <div class="combo-item">
+                        <div class="combo-header">
+                            <div>
+                                <span class="combo-name">${combo.name}</span>
+                                <span class="combo-difficulty ${combo.difficulty}">${combo.difficulty}</span>
+                            </div>
+                            <span class="combo-archetype">${combo.archetype}</span>
+                        </div>
+                        <div class="combo-cards">
+                            ${combo.cards.map(card => `
+                                <div class="combo-card">
+                                    <img src="https://api.scryfall.com/cards/named?exact=${encodeURIComponent(card.name)}&format=image&version=small" alt="${card.name}" loading="lazy">
+                                    <div class="combo-card-name">${card.name}</div>
+                                    <div class="combo-card-role">${card.role}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="combo-steps">
+                            <h4>📖 Come funziona (step by step):</h4>
+                            <ol>
+                                ${combo.steps.map(step => `<li>${step}</li>`).join('')}
+                            </ol>
+                        </div>
+                        <div class="combo-result">🏆 Risultato: ${combo.result}</div>
+                    </div>
+                `).join('');
+            });
+
+            container.innerHTML = html;
+        }
+
+        loadData();
+
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => console.log('SW registered'))
+                .catch(err => console.log('SW failed:', err));
+        }
+
+        // Install prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            const banner = document.createElement('div');
+            banner.id = 'install-banner';
+            banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#16213e;border-top:2px solid #e94560;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;z-index:1000;';
+            banner.innerHTML = '<span style="color:#e0e0e0;font-size:0.9em;">📱 Installa come app sul telefono</span><button id="install-btn" style="background:#e94560;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85em;">Installa</button>';
+            document.body.appendChild(banner);
+
+            document.getElementById('install-btn').addEventListener('click', () => {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(() => {
+                    deferredPrompt = null;
+                    banner.remove();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

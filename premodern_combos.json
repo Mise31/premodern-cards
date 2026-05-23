@@ -1,0 +1,1027 @@
+[
+  {
+    "name": "Aluren + Cavern Harpy + Parasitic Strix",
+    "archetype": "Aluren",
+    "difficulty": "Media",
+    "cards": [
+      {
+        "name": "Aluren",
+        "role": "Motore della combo"
+      },
+      {
+        "name": "Cavern Harpy",
+        "role": "Rimbalza le creature gratis"
+      },
+      {
+        "name": "Parasitic Strix",
+        "role": "Drena 2 vita all'avversario"
+      }
+    ],
+    "steps": [
+      "Gioca Aluren (permette a tutti di giocare creature con costo 3 o meno gratis)",
+      "Gioca Cavern Harpy gratis. Quando entra, rimbalza Parasitic Strix in mano",
+      "Gioca Parasitic Strix gratis. Drena 2 vita all'avversario",
+      "Paga 1 vita per rimbalzare Cavern Harpy in mano",
+      "Rigioca Cavern Harpy gratis, rimbalza Parasitic Strix",
+      "Ripeti all'infinito: ogni ciclo l'avversario perde 2 vita!"
+    ],
+    "result": "Danno infinito all'avversario (drain 2 vita per ciclo)",
+    "category": "Combo Creature-Based"
+  },
+  {
+    "name": "Stifle + Phyrexian Dreadnought",
+    "archetype": "Stiflenought",
+    "difficulty": "Facile",
+    "cards": [
+      {
+        "name": "Phyrexian Dreadnought",
+        "role": "Creatura 12/12 per 1 mana"
+      },
+      {
+        "name": "Stifle",
+        "role": "Annulla l'abilita di sacrificio"
+      }
+    ],
+    "steps": [
+      "Gioca Phyrexian Dreadnought (costa solo 1 mana!)",
+      "Si attiva la sua abilita: Sacrifica 12 forza di creature o sacrifica Dreadnought",
+      "In risposta, gioca Stifle per annullare quell'abilita",
+      "Hai un 12/12 in campo al turno 1-2!"
+    ],
+    "result": "Creatura 12/12 trampling in gioco al turno 1 o 2",
+    "category": "Combo Creature-Based"
+  },
+  {
+    "name": "Life Combo (En-Kor + Task Force + Worthy Cause)",
+    "archetype": "Life",
+    "difficulty": "Media",
+    "cards": [
+      {
+        "name": "Nomads en-Kor",
+        "role": "Redirige danno a Task Force (gratis)"
+      },
+      {
+        "name": "Task Force",
+        "role": "Prende +0/+3 ogni volta che e bersaglio"
+      },
+      {
+        "name": "Worthy Cause",
+        "role": "Sacrifica creatura, guadagni vita pari alla costituzione"
+      }
+    ],
+    "steps": [
+      "Metti in campo Nomads en-Kor e Task Force",
+      "Attiva Nomads en-Kor bersagliando Task Force (costa 0!)",
+      "Task Force prende +0/+3",
+      "Ripeti 1000 volte: Task Force ora ha costituzione 3000+",
+      "Gioca Worthy Cause sacrificando Task Force",
+      "Guadagni 3000+ vita!"
+    ],
+    "result": "Vita praticamente infinita (migliaia di punti vita)",
+    "category": "Combo Creature-Based"
+  },
+  {
+    "name": "Recurring Nightmare + Survival of the Fittest",
+    "archetype": "RecSur",
+    "difficulty": "Media",
+    "cards": [
+      {
+        "name": "Survival of the Fittest",
+        "role": "Scarta una creatura per cercarne un'altra"
+      },
+      {
+        "name": "Recurring Nightmare",
+        "role": "Sacrifica creatura per riportarne una dal cimitero"
+      },
+      {
+        "name": "Verdant Force",
+        "role": "Crea un token 1/1 ad ogni mantenimento"
+      }
+    ],
+    "steps": [
+      "Gioca Survival of the Fittest",
+      "Scarta una creatura per cercare Verdant Force",
+      "Gioca una creatura piccola",
+      "Gioca Recurring Nightmare: sacrifica la piccola, riporta la grossa dal cimitero",
+      "Hai un mostro enorme in campo al turno 3-4!",
+      "Recurring Nightmare torna in mano, pronta per essere riusata"
+    ],
+    "result": "Creature enormi in gioco molto presto",
+    "category": "Combo Creature-Based"
+  },
+  {
+    "name": "Reanimator (Entomb + Reanimate)",
+    "archetype": "Reanimator",
+    "difficulty": "Facile",
+    "cards": [
+      {
+        "name": "Entomb",
+        "role": "Mette una creatura dal mazzo al cimitero"
+      },
+      {
+        "name": "Reanimate",
+        "role": "Riporta in gioco una creatura dal cimitero"
+      },
+      {
+        "name": "Akroma, Angel of Wrath",
+        "role": "6/6 volante, rapidita, travolgere"
+      }
+    ],
+    "steps": [
+      "Turno 1: Gioca Entomb, metti Akroma nel cimitero",
+      "Turno 1-2: Gioca Reanimate bersagliando Akroma",
+      "Paghi 8 vita ma Akroma entra in gioco!",
+      "Hai un 6/6 volante con rapidita al turno 1-2!"
+    ],
+    "result": "Creatura devastante in gioco al turno 1-2",
+    "category": "Reanimator"
+  },
+  {
+    "name": "Devourer Combo",
+    "archetype": "Devourer Combo",
+    "difficulty": "Difficile",
+    "cards": [
+      {
+        "name": "Phyrexian Devourer",
+        "role": "Si mangia carte dal mazzo per crescere"
+      },
+      {
+        "name": "Triskelion",
+        "role": "Rimuove segnalini per fare danno diretto"
+      },
+      {
+        "name": "Buried Alive",
+        "role": "Mette 3 creature nel cimitero"
+      },
+      {
+        "name": "Animate Dead",
+        "role": "Riporta creatura dal cimitero"
+      }
+    ],
+    "steps": [
+      "Usa Buried Alive per mettere Devourer e Triskelion nel cimitero",
+      "Riporta Devourer con Animate Dead",
+      "Attiva Devourer: esilia carte, prende +X/+X per ogni carta",
+      "Ripeti finche Devourer ha forza 20+",
+      "Quando Devourer muore, i segnalini vanno su Triskelion",
+      "Triskelion fa 20+ danni diretti all'avversario!"
+    ],
+    "result": "Danno diretto letale in un turno",
+    "category": "Reanimator"
+  },
+  {
+    "name": "Replenish + Opalescence",
+    "archetype": "Replenish",
+    "difficulty": "Media",
+    "cards": [
+      {
+        "name": "Replenish",
+        "role": "Riporta TUTTI gli incantesimi dal cimitero"
+      },
+      {
+        "name": "Parallax Wave",
+        "role": "Esilia creature avversarie"
+      },
+      {
+        "name": "Opalescence",
+        "role": "Gli incantesimi diventano creature"
+      },
+      {
+        "name": "Attunement",
+        "role": "Pesca 3, scarta 4"
+      }
+    ],
+    "steps": [
+      "Usa Attunement per scartare incantesimi nel cimitero",
+      "Gioca Replenish: tutti gli incantesimi tornano in gioco!",
+      "Opalescence li rende creature",
+      "Parallax Wave esilia le creature avversarie",
+      "Attacchi con i tuoi incantesimi-creature!"
+    ],
+    "result": "Board pieno di creature, board avversario vuoto",
+    "category": "Combo Incantesimi"
+  },
+  {
+    "name": "Pattern of Rebirth + Sacrifice",
+    "archetype": "Pattern Combo",
+    "difficulty": "Media",
+    "cards": [
+      {
+        "name": "Pattern of Rebirth",
+        "role": "Quando la creatura muore, cerca qualsiasi creatura"
+      },
+      {
+        "name": "Academy Rector",
+        "role": "Quando muore, cerca un incantesimo"
+      },
+      {
+        "name": "Cabal Therapy",
+        "role": "Sacrifica una creatura per flashback"
+      }
+    ],
+    "steps": [
+      "Metti Pattern of Rebirth su una creatura piccola",
+      "Sacrifica la creatura con Cabal Therapy",
+      "Pattern si attiva: cerca qualsiasi creatura dal mazzo!",
+      "Cerca Academy Rector o una creatura enorme",
+      "Sacrifica Rector per trovare un incantesimo potente",
+      "Catena di sacrifici che costruisce un board inarrestabile"
+    ],
+    "result": "Creature e incantesimi potenti in un solo turno",
+    "category": "Altro"
+  },
+  {
+    "name": "Oath of Druids + Cognivore",
+    "archetype": "Oath",
+    "difficulty": "Facile",
+    "cards": [
+      {
+        "name": "Oath of Druids",
+        "role": "Rivela carte finche non trovi una creatura"
+      },
+      {
+        "name": "Cognivore",
+        "role": "Volante, forza pari agli istantanei nei cimiteri"
+      },
+      {
+        "name": "Forbidden Orchard",
+        "role": "Da un token all'avversario per attivare Oath"
+      }
+    ],
+    "steps": [
+      "Gioca Oath of Druids (non giocare creature!)",
+      "Usa Forbidden Orchard per dare un token all'avversario",
+      "Oath si attiva: rivela carte finche non trovi Cognivore",
+      "Le carte rivelate vanno al cimitero (inclusi istantanei)",
+      "Cognivore entra come un 10/10+ volante!"
+    ],
+    "result": "Creatura volante enorme al turno 2-3 senza pagare mana",
+    "category": "Combo Incantesimi"
+  },
+  {
+    "name": "Donate + Illusions of Grandeur",
+    "archetype": "Trix",
+    "difficulty": "Facile",
+    "cards": [
+      {
+        "name": "Illusions of Grandeur",
+        "role": "Guadagni 20 vita quando entra, perdi 20 quando esce"
+      },
+      {
+        "name": "Donate",
+        "role": "Dai un permanente all'avversario"
+      }
+    ],
+    "steps": [
+      "Gioca Illusions of Grandeur: guadagni 20 vita",
+      "Gioca Donate: dai Illusions all'avversario",
+      "L'avversario deve pagare il costo cumulativo crescente",
+      "Quando non puo piu pagare, Illusions lascia il gioco",
+      "L'avversario perde 20 vita!"
+    ],
+    "result": "L'avversario perde 20 vita",
+    "category": "Combo Control"
+  },
+  {
+    "name": "Enchantress Engine",
+    "archetype": "Enchantress",
+    "difficulty": "Media",
+    "cards": [
+      {
+        "name": "Argothian Enchantress",
+        "role": "Pesca una carta per ogni incantesimo giocato"
+      },
+      {
+        "name": "Serra's Sanctum",
+        "role": "Produce mana per ogni incantesimo in gioco"
+      },
+      {
+        "name": "Words of Wind",
+        "role": "Rimbalza permanenti avversari"
+      }
+    ],
+    "steps": [
+      "Gioca Argothian Enchantress",
+      "Ogni incantesimo ti fa pescare una carta",
+      "Serra's Sanctum produce mana pari ai tuoi incantesimi",
+      "Piu incantesimi giochi, piu mana e carte hai",
+      "Words of Wind rimbalza i permanenti avversari",
+      "L'avversario si ritrova senza nulla in campo!"
+    ],
+    "result": "Motore di pesca infinito che svuota il board avversario",
+    "category": "Combo Incantesimi"
+  },
+  {
+    "name": "Psychatog + Upheaval",
+    "archetype": "Psychatog",
+    "difficulty": "Media",
+    "cards": [
+      {
+        "name": "Psychatog",
+        "role": "Creatura che cresce scartando carte e esiliando il cimitero"
+      },
+      {
+        "name": "Upheaval",
+        "role": "Rimbalza TUTTI i permanenti in mano"
+      },
+      {
+        "name": "Nightscape Familiar",
+        "role": "Riduce il costo delle magie blu e rosse di 1"
+      }
+    ],
+    "steps": [
+      "Accumula mana e carte in mano durante la partita",
+      "Gioca Upheaval lasciando abbastanza mana per rigiocare Psychatog",
+      "Tutti i permanenti tornano in mano (tuoi e dell'avversario!)",
+      "Rigioca subito Psychatog con il mana rimasto",
+      "L'avversario ha il board vuoto e non puo difendersi",
+      "Scarta tutte le carte in mano a Psychatog ed esilia il cimitero: diventa enorme e attacca per letale!"
+    ],
+    "result": "Board reset + Psychatog letale in un colpo solo",
+    "category": "Combo Control"
+  },
+  {
+    "name": "Full English Breakfast (Shapeshifter + Survival + Phage)",
+    "archetype": "Full English Breakfast",
+    "difficulty": "Difficile",
+    "cards": [
+      {
+        "name": "Volrath's Shapeshifter",
+        "role": "Diventa la creatura in cima al tuo cimitero"
+      },
+      {
+        "name": "Survival of the Fittest",
+        "role": "Scarta una creatura per cercarne un'altra"
+      },
+      {
+        "name": "Phage the Untouchable",
+        "role": "Se fa danno da combattimento, l'avversario perde la partita"
+      },
+      {
+        "name": "Akroma, Angel of Wrath",
+        "role": "Da rapidita allo Shapeshifter per attaccare subito"
+      }
+    ],
+    "steps": [
+      "Gioca Survival of the Fittest e Volrath's Shapeshifter",
+      "Usa Survival per scartare una creatura e cercare Akroma",
+      "Scarta Akroma: Shapeshifter diventa Akroma (ha rapidita!)",
+      "Attacca con lo Shapeshifter (che ora ha rapidita)",
+      "Prima che il danno venga assegnato, usa Survival per cercare Phage",
+      "Scarta Phage: Shapeshifter diventa Phage. Il danno colpisce e l'avversario perde!"
+    ],
+    "result": "Vittoria istantanea se Phage fa danno da combattimento",
+    "category": "Combo Creature-Based"
+  },
+  {
+    "name": "Stasis + Chronatog (Lock Totale)",
+    "archetype": "Stasis",
+    "difficulty": "Media",
+    "cards": [
+      {
+        "name": "Stasis",
+        "role": "Nessun giocatore stappa i permanenti"
+      },
+      {
+        "name": "Chronatog",
+        "role": "Salti il tuo turno (cosi non devi pagare Stasis)"
+      },
+      {
+        "name": "Kismet",
+        "role": "I permanenti avversari entrano tappati"
+      }
+    ],
+    "steps": [
+      "Gioca Kismet: tutti i permanenti dell'avversario entrano tappati",
+      "Gioca Stasis: nessuno stappa piu nulla!",
+      "Gioca Chronatog e attiva la sua abilita: salti il tuo prossimo turno",
+      "Siccome salti il turno, non devi pagare il mantenimento di Stasis",
+      "L'avversario non puo stappare nulla e non puo fare niente",
+      "Vinci perche l'avversario si milla da solo (pesca senza poter giocare)"
+    ],
+    "result": "Lock totale: l'avversario non puo piu giocare",
+    "category": "Lock / Prison"
+  },
+  {
+    "name": "Terrageddon (Terravore + Armageddon)",
+    "archetype": "Terrageddon",
+    "difficulty": "Facile",
+    "cards": [
+      {
+        "name": "Terravore",
+        "role": "Forza/costituzione pari alle terre nei cimiteri"
+      },
+      {
+        "name": "Armageddon",
+        "role": "Distrugge TUTTE le terre in gioco"
+      },
+      {
+        "name": "Mox Diamond",
+        "role": "Accelera il mana per giocare tutto prima"
+      }
+    ],
+    "steps": [
+      "Gioca Terravore (costa solo 3 mana)",
+      "Usa Wasteland e fetchland per mettere terre nei cimiteri",
+      "Gioca Armageddon: tutte le terre vengono distrutte!",
+      "Tutte quelle terre vanno nei cimiteri",
+      "Terravore diventa ENORME (es. 10/10 o piu)",
+      "L'avversario non ha terre e non puo fare nulla, Terravore attacca per letale!"
+    ],
+    "result": "Creatura enorme + avversario senza terre",
+    "category": "Aggro-Combo"
+  },
+  {
+    "name": "Sneak Attack + Creature Enormi",
+    "archetype": "Sneak Attack",
+    "difficulty": "Facile",
+    "cards": [
+      {
+        "name": "Sneak Attack",
+        "role": "Paga 1 mana rosso per mettere una creatura in gioco con rapidita"
+      },
+      {
+        "name": "Serra Avatar",
+        "role": "Forza/costituzione pari ai tuoi punti vita"
+      },
+      {
+        "name": "Akroma, Angel of Wrath",
+        "role": "6/6 volante, rapidita, travolgere"
+      }
+    ],
+    "steps": [
+      "Gioca Sneak Attack (costa 4 mana rossi)",
+      "Paga 1 mana rosso: metti Serra Avatar o Akroma in gioco dalla mano",
+      "La creatura ha rapidita e attacca subito!",
+      "Serra Avatar attacca come un 20/20 (pari ai tuoi punti vita)",
+      "A fine turno la creatura viene sacrificata, ma il danno e gia fatto",
+      "Spesso un solo attacco e sufficiente per vincere!"
+    ],
+    "result": "20+ danni in un solo turno per pochi mana",
+    "category": "Aggro-Combo"
+  },
+  {
+    "name": "Pandemonium + Phyrexian Dreadnought",
+    "archetype": "Pandemonium",
+    "difficulty": "Facile",
+    "cards": [
+      {
+        "name": "Pandemonium",
+        "role": "Ogni creatura che entra fa danno pari alla sua forza"
+      },
+      {
+        "name": "Phyrexian Dreadnought",
+        "role": "Creatura 12/12 per 1 mana"
+      },
+      {
+        "name": "Saproling Burst",
+        "role": "Crea token con forza variabile"
+      }
+    ],
+    "steps": [
+      "Gioca Pandemonium (ogni creatura che entra fa danno!)",
+      "Gioca Phyrexian Dreadnought per 1 mana",
+      "Pandemonium si attiva: Dreadnought fa 12 danni all'avversario!",
+      "Non importa se Dreadnought si sacrifica dopo: il danno e gia stato fatto",
+      "12 danni + qualsiasi altra creatura = letale!",
+      "Con Saproling Burst puoi fare altri 12+ danni nello stesso turno"
+    ],
+    "result": "12+ danni diretti per 1 mana (spesso letale al turno 4-5)",
+    "category": "Combo Incantesimi"
+  },
+  {
+    "name": "Hermit Druid (Mill Totale)",
+    "archetype": "Angry Hermit",
+    "difficulty": "Difficile",
+    "cards": [
+      {
+        "name": "Hermit Druid",
+        "role": "Rivela carte finche non trovi una terra base (se non ne hai, milli tutto!)"
+      },
+      {
+        "name": "Sutured Ghoul",
+        "role": "Entra esiliando creature dal cimitero, forza pari alla loro forza totale"
+      },
+      {
+        "name": "Dragon Breath",
+        "role": "Si attacca automaticamente a creature con forza 6+ (da rapidita)"
+      },
+      {
+        "name": "Krosan Cloudscraper",
+        "role": "Creatura 13/13 da esiliare con Sutured Ghoul"
+      }
+    ],
+    "steps": [
+      "Costruisci il mazzo SENZA terre base (solo terre non-base)",
+      "Gioca Hermit Druid e attivalo: rivela carte finche non trovi una terra base",
+      "Non ce ne sono! Tutto il mazzo finisce nel cimitero!",
+      "Ora hai Sutured Ghoul, Dragon Breath e creature enormi nel cimitero",
+      "Riporta Sutured Ghoul in gioco (con Exhume o Dread Return)",
+      "Sutured Ghoul esilia le creature: diventa 20/20+. Dragon Breath gli da rapidita. Attacca per letale!"
+    ],
+    "result": "Creatura 20/20+ con rapidita al turno 2-3",
+    "category": "Reanimator"
+  },
+  {
+    "name": "Gro-a-Tog (Quirion Dryad + Cantrip)",
+    "archetype": "Gro-a-Tog",
+    "difficulty": "Media",
+    "cards": [
+      {
+        "name": "Quirion Dryad",
+        "role": "Prende +1/+1 per ogni magia non-verde giocata"
+      },
+      {
+        "name": "Psychatog",
+        "role": "Creatura alternativa che cresce scartando"
+      },
+      {
+        "name": "Accumulated Knowledge",
+        "role": "Pesca carte (cantrip che fa crescere Dryad)"
+      },
+      {
+        "name": "Daze",
+        "role": "Counterspell gratis che fa crescere Dryad"
+      }
+    ],
+    "steps": [
+      "Gioca Quirion Dryad al turno 2",
+      "Ogni magia blu che giochi (counter, cantrip, bounce) da +1/+1 a Dryad",
+      "Gioca Daze (gratis!), Accumulated Knowledge, Force Spike...",
+      "Dryad cresce ogni turno: diventa 5/5, 7/7, 10/10...",
+      "Proteggi Dryad con counterspell mentre cresce",
+      "In pochi turni Dryad e abbastanza grande da uccidere in 2-3 attacchi!"
+    ],
+    "result": "Creatura che cresce gratis mentre giochi normalmente",
+    "category": "Combo Creature-Based"
+  },
+  {
+    "name": "Zombie Infestation + Squee",
+    "archetype": "Zombie Infestation",
+    "difficulty": "Facile",
+    "cards": [
+      {
+        "name": "Zombie Infestation",
+        "role": "Scarta 2 carte per creare un token Zombie 2/2"
+      },
+      {
+        "name": "Squee, Goblin Nabob",
+        "role": "Torna in mano dal cimitero ogni turno"
+      }
+    ],
+    "steps": [
+      "Gioca Zombie Infestation",
+      "Scarta Squee + un'altra carta per creare un token Zombie 2/2",
+      "Al tuo prossimo mantenimento, Squee torna in mano dal cimitero!",
+      "Scarta di nuovo Squee + un'altra carta per un altro Zombie",
+      "Ogni turno ottieni un Zombie 2/2 gratis",
+      "Accumuli un esercito di Zombie che travolge l'avversario!"
+    ],
+    "result": "Un token Zombie 2/2 gratis ogni turno",
+    "category": "Aggro-Combo"
+  },
+  {
+    "name": "Madness (Wild Mongrel + Arrogant Wurm)",
+    "archetype": "Madness",
+    "difficulty": "Facile",
+    "cards": [
+      {
+        "name": "Wild Mongrel",
+        "role": "Scarta carte per dargli +1/+1 e cambiare colore"
+      },
+      {
+        "name": "Arrogant Wurm",
+        "role": "4/4 trampling che costa solo 3 con Madness"
+      },
+      {
+        "name": "Basking Rootwalla",
+        "role": "1/1 che si gioca GRATIS con Madness"
+      },
+      {
+        "name": "Circular Logic",
+        "role": "Counterspell che costa 1 con Madness"
+      }
+    ],
+    "steps": [
+      "Gioca Wild Mongrel al turno 2",
+      "Scarta Basking Rootwalla a Wild Mongrel: Rootwalla entra in gioco GRATIS!",
+      "Wild Mongrel prende +1/+1 E hai una creatura extra gratis",
+      "Scarta Arrogant Wurm: paghi solo 3 mana (invece di 5) per un 4/4 trampling",
+      "Se l'avversario gioca qualcosa, scarta Circular Logic per counterarla a costo ridotto",
+      "Hai creature gratis, counter economici, e Wild Mongrel che cresce!"
+    ],
+    "result": "Creature gratis e counter economici scartando carte",
+    "category": "Aggro-Combo"
+  },
+  {
+    "name": "Tinker + Colossus/Processor",
+    "archetype": "Tinker",
+    "difficulty": "Facile",
+    "cards": [
+      {
+        "name": "Tinker",
+        "role": "Sacrifica un artefatto per cercarne uno qualsiasi dal mazzo"
+      },
+      {
+        "name": "Darksteel Colossus",
+        "role": "11/11 indistruttibile trampling"
+      },
+      {
+        "name": "Phyrexian Processor",
+        "role": "Paga vita per creare token enormi ogni turno"
+      }
+    ],
+    "steps": [
+      "Gioca un artefatto economico (Mox Diamond, qualsiasi cosa)",
+      "Gioca Tinker: sacrifica l'artefatto economico",
+      "Cerca Darksteel Colossus dal mazzo e mettilo direttamente in gioco!",
+      "Hai un 11/11 indistruttibile trampling al turno 3!",
+      "Oppure cerca Phyrexian Processor e crea token 10/10+ ogni turno",
+      "L'avversario non puo gestire creature cosi grosse cosi presto"
+    ],
+    "result": "Artefatto devastante in gioco al turno 2-3",
+    "category": "Combo Artefatti"
+  },
+  {
+    "name": "Goblin Lackey + Goblin Piledriver",
+    "archetype": "Goblins",
+    "difficulty": "Facile",
+    "cards": [
+      {
+        "name": "Goblin Lackey",
+        "role": "Se fa danno, metti un Goblin dalla mano in gioco gratis"
+      },
+      {
+        "name": "Goblin Piledriver",
+        "role": "Prende +2/+0 per ogni altro Goblin attaccante"
+      },
+      {
+        "name": "Siege-Gang Commander",
+        "role": "Porta 3 token Goblin con se quando entra"
+      }
+    ],
+    "steps": [
+      "Turno 1: Gioca Goblin Lackey",
+      "Turno 2: Lackey attacca e fa danno. Metti Siege-Gang Commander in gioco GRATIS!",
+      "Siege-Gang porta 3 token Goblin: ora hai 5 Goblin in campo al turno 2!",
+      "Turno 3: Attacca con tutti. Goblin Piledriver prende +2/+0 per ogni altro Goblin",
+      "Con 4 altri Goblin attaccanti, Piledriver e un 9/2!",
+      "Danno totale al turno 3: spesso 15-20 danni!"
+    ],
+    "result": "Esercito di Goblin al turno 2, danni letali al turno 3-4",
+    "category": "Aggro-Combo"
+  },
+  {
+    "name": "Animate Dead + Worldgorger Dragon (Mana Infinito)",
+    "archetype": "Worldgorger",
+    "difficulty": "Difficile",
+    "cards": [
+      {
+        "name": "Worldgorger Dragon",
+        "role": "Esilia tutti i tuoi permanenti quando entra, li riporta quando esce"
+      },
+      {
+        "name": "Animate Dead",
+        "role": "Riporta una creatura dal cimitero in gioco"
+      },
+      {
+        "name": "Ambassador Laquatus",
+        "role": "Usa il mana infinito per millare l'avversario"
+      }
+    ],
+    "steps": [
+      "Metti Worldgorger Dragon nel cimitero (con Entomb o scarto)",
+      "Gioca Animate Dead bersagliando Worldgorger Dragon",
+      "Dragon entra: esilia tutti i tuoi permanenti (incluso Animate Dead!)",
+      "Animate Dead lascia il gioco: Dragon muore, tutti i permanenti tornano",
+      "Animate Dead torna e rianima di nuovo Dragon: loop infinito!",
+      "Ogni volta che le terre tornano, tappale per mana: mana INFINITO!",
+      "Usa il mana infinito con Ambassador Laquatus per millare tutto il mazzo dell'avversario"
+    ],
+    "result": "Mana infinito, mill infinito dell'avversario",
+    "category": "Reanimator"
+  },
+  {
+    "name": "Aluren + Raven Familiar (Pesca Infinita)",
+    "archetype": "Aluren",
+    "difficulty": "Media",
+    "cards": [
+      {
+        "name": "Aluren",
+        "role": "Gioca creature con costo 3 o meno gratis"
+      },
+      {
+        "name": "Cavern Harpy",
+        "role": "Rimbalza creature quando entra"
+      },
+      {
+        "name": "Raven Familiar",
+        "role": "Quando entra, guarda le prime 3 carte e pescane 1"
+      }
+    ],
+    "steps": [
+      "Gioca Aluren",
+      "Gioca Raven Familiar gratis: guarda 3 carte, tieni la migliore",
+      "Gioca Cavern Harpy gratis: rimbalza Raven Familiar in mano",
+      "Paga 1 vita per rimbalzare Cavern Harpy",
+      "Ripeti: ogni ciclo peschi la carta migliore tra 3",
+      "Trovi la win condition (Parasitic Strix o Brain Freeze) e vinci!"
+    ],
+    "result": "Pesca e filtra tutto il mazzo per trovare la kill",
+    "category": "Combo Creature-Based"
+  },
+  {
+    "name": "Aluren + Maggot Carrier (Drain Diretto)",
+    "archetype": "Aluren",
+    "difficulty": "Media",
+    "cards": [
+      {
+        "name": "Aluren",
+        "role": "Gioca creature con costo 3 o meno gratis"
+      },
+      {
+        "name": "Cavern Harpy",
+        "role": "Rimbalza creature quando entra"
+      },
+      {
+        "name": "Maggot Carrier",
+        "role": "Quando entra, ogni giocatore perde 1 vita"
+      }
+    ],
+    "steps": [
+      "Gioca Aluren",
+      "Gioca Maggot Carrier gratis: tutti perdono 1 vita",
+      "Gioca Cavern Harpy gratis: rimbalza Maggot Carrier",
+      "Paga 1 vita per rimbalzare Cavern Harpy",
+      "Ripeti: ogni ciclo l'avversario perde 1 vita (tu perdi 2 ma lui muore prima)",
+      "Dopo 10 cicli l'avversario ha perso 10 vita, tu 20... ma lui parte da 20!"
+    ],
+    "result": "Drain vita infinito (alternativa a Parasitic Strix)",
+    "category": "Combo Creature-Based"
+  },
+  {
+    "name": "Aluren + Soul Warden (Vita Infinita)",
+    "archetype": "Aluren",
+    "difficulty": "Media",
+    "cards": [
+      {
+        "name": "Aluren",
+        "role": "Gioca creature con costo 3 o meno gratis"
+      },
+      {
+        "name": "Cavern Harpy",
+        "role": "Rimbalza creature quando entra"
+      },
+      {
+        "name": "Soul Warden",
+        "role": "Guadagni 1 vita ogni volta che una creatura entra in gioco"
+      }
+    ],
+    "steps": [
+      "Gioca Soul Warden e poi Aluren",
+      "Gioca Cavern Harpy gratis: Soul Warden ti fa guadagnare 1 vita",
+      "Paga 1 vita per rimbalzare Cavern Harpy (netto: 0)",
+      "Gioca qualsiasi altra creatura gratis: +1 vita da Soul Warden",
+      "Rimbalza con Harpy e ripeti: guadagni vita infinita",
+      "Ora sei imbattibile e puoi vincere con calma!"
+    ],
+    "result": "Vita infinita come protezione prima di fare la kill",
+    "category": "Combo Creature-Based"
+  },
+  {
+    "name": "Replenish + Pandemonium + Saproling Burst (PandeBurst)",
+    "archetype": "Replenish",
+    "difficulty": "Media",
+    "cards": [
+      {
+        "name": "Replenish",
+        "role": "Riporta tutti gli incantesimi dal cimitero"
+      },
+      {
+        "name": "Pandemonium",
+        "role": "Ogni creatura che entra fa danno pari alla sua forza"
+      },
+      {
+        "name": "Saproling Burst",
+        "role": "Crea token con forza pari ai segnalini rimasti"
+      },
+      {
+        "name": "Attunement",
+        "role": "Pesca 3, scarta 4 (mette incantesimi nel cimitero)"
+      }
+    ],
+    "steps": [
+      "Usa Attunement o Frantic Search per scartare Pandemonium e Saproling Burst nel cimitero",
+      "Gioca Replenish: entrambi tornano in gioco contemporaneamente!",
+      "Saproling Burst ha 7 segnalini: crea un token 7/7",
+      "Pandemonium si attiva: il token fa 7 danni all'avversario!",
+      "Crea un secondo token 6/6: altri 6 danni!",
+      "Crea un terzo token 5/5: altri 5 danni! Totale: 18 danni = quasi letale!"
+    ],
+    "result": "18+ danni diretti in un turno con Replenish",
+    "category": "Combo Incantesimi"
+  },
+  {
+    "name": "Replenish + Parallax Wave + Parallax Tide (Esilio Totale)",
+    "archetype": "Replenish",
+    "difficulty": "Media",
+    "cards": [
+      {
+        "name": "Replenish",
+        "role": "Riporta tutti gli incantesimi dal cimitero"
+      },
+      {
+        "name": "Parallax Wave",
+        "role": "Esilia fino a 5 creature avversarie"
+      },
+      {
+        "name": "Parallax Tide",
+        "role": "Esilia fino a 5 terre avversarie"
+      },
+      {
+        "name": "Opalescence",
+        "role": "Gli incantesimi diventano creature"
+      }
+    ],
+    "steps": [
+      "Scarta Parallax Wave, Parallax Tide e Opalescence nel cimitero",
+      "Gioca Replenish: tutti tornano in gioco!",
+      "Parallax Tide esilia 5 terre dell'avversario",
+      "Parallax Wave esilia tutte le creature dell'avversario",
+      "Opalescence rende i tuoi incantesimi creature: attacca!",
+      "L'avversario non ha ne terre ne creature: game over!"
+    ],
+    "result": "Board avversario completamente vuoto (terre + creature esiliate)",
+    "category": "Combo Incantesimi"
+  },
+  {
+    "name": "Stifle + Vision Charm + Dreadnought (8 Stifle)",
+    "archetype": "Stiflenought",
+    "difficulty": "Facile",
+    "cards": [
+      {
+        "name": "Phyrexian Dreadnought",
+        "role": "Creatura 12/12 per 1 mana"
+      },
+      {
+        "name": "Stifle",
+        "role": "Annulla un'abilita attivata o innescata"
+      },
+      {
+        "name": "Vision Charm",
+        "role": "Alternativa a Stifle (phase out il Dreadnought)"
+      }
+    ],
+    "steps": [
+      "Gioca Phyrexian Dreadnought per 1 mana",
+      "Si attiva l'abilita di sacrificio",
+      "Opzione A: Stifle annulla l'abilita direttamente",
+      "Opzione B: Vision Charm fa phase out Dreadnought (l'abilita non trova il bersaglio)",
+      "Con 8 modi per proteggere Dreadnought, la combo e molto consistente",
+      "Hai un 12/12 in campo quasi sempre al turno 2!"
+    ],
+    "result": "12/12 in gioco con doppia ridondanza (Stifle + Vision Charm)",
+    "category": "Combo Creature-Based"
+  },
+  {
+    "name": "Reanimator con Exhume (Budget Kill)",
+    "archetype": "Reanimator",
+    "difficulty": "Facile",
+    "cards": [
+      {
+        "name": "Putrid Imp",
+        "role": "Scarta carte dalla mano al cimitero (gratis!)"
+      },
+      {
+        "name": "Exhume",
+        "role": "Ogni giocatore riporta una creatura dal cimitero"
+      },
+      {
+        "name": "Verdant Force",
+        "role": "8/8 che crea token 1/1 ogni mantenimento"
+      }
+    ],
+    "steps": [
+      "Turno 1: Gioca Putrid Imp, scarta Verdant Force nel cimitero",
+      "Turno 2: Gioca Exhume (costa solo 2 mana!)",
+      "Entrambi i giocatori riportano una creatura: tu riporti Verdant Force!",
+      "L'avversario probabilmente non ha nulla nel cimitero al turno 2",
+      "Hai un 8/8 che crea token ogni turno al turno 2!",
+      "Alternativa: scarta Akroma per un 6/6 volante con rapidita"
+    ],
+    "result": "Creatura enorme al turno 2 per soli 2 mana",
+    "category": "Reanimator"
+  },
+  {
+    "name": "Reanimator con Shallow Grave (Rapidita!)",
+    "archetype": "Reanimator",
+    "difficulty": "Media",
+    "cards": [
+      {
+        "name": "Shallow Grave",
+        "role": "Riporta una creatura dal cimitero con rapidita (fino a fine turno)"
+      },
+      {
+        "name": "Entomb",
+        "role": "Mette una creatura nel cimitero"
+      },
+      {
+        "name": "Multani, Maro-Sorcerer",
+        "role": "Forza/costituzione pari alle carte in mano di tutti"
+      }
+    ],
+    "steps": [
+      "Turno 1: Entomb, metti una creatura enorme nel cimitero",
+      "Turno 2: Gioca Shallow Grave (istantaneo, 2 mana!)",
+      "La creatura torna in gioco CON RAPIDITA!",
+      "Attacca immediatamente per danni enormi",
+      "A fine turno la creatura viene esiliata, ma il danno e fatto",
+      "Perfetto come kill di sorpresa a fine turno dell'avversario!"
+    ],
+    "result": "Creatura enorme con rapidita a velocita istantanea",
+    "category": "Reanimator"
+  },
+  {
+    "name": "Contamination + Squee Lock (Mana Denial)",
+    "archetype": "Contamination",
+    "difficulty": "Media",
+    "cards": [
+      {
+        "name": "Contamination",
+        "role": "Tutte le terre producono solo mana nero"
+      },
+      {
+        "name": "Squee, Goblin Nabob",
+        "role": "Torna in mano ogni turno (sacrificabile ogni turno)"
+      },
+      {
+        "name": "Phyrexian Tower",
+        "role": "Sacrifica una creatura per 2 mana nero"
+      }
+    ],
+    "steps": [
+      "Gioca creature nere e Squee",
+      "Gioca Contamination: tutte le terre ora producono solo mana nero!",
+      "Al tuo mantenimento, sacrifica Squee per pagare Contamination",
+      "Squee torna in mano al prossimo mantenimento: loop infinito!",
+      "L'avversario non puo produrre mana colorato (solo nero)",
+      "Se non gioca nero, non puo fare NULLA!"
+    ],
+    "result": "Lock di mana: l'avversario puo produrre solo mana nero",
+    "category": "Lock / Prison"
+  },
+  {
+    "name": "Natural Order + Verdant Force (Elves Combo)",
+    "archetype": "Elves",
+    "difficulty": "Facile",
+    "cards": [
+      {
+        "name": "Natural Order",
+        "role": "Sacrifica una creatura verde, cerca qualsiasi creatura verde dal mazzo"
+      },
+      {
+        "name": "Verdant Force",
+        "role": "8/8 che crea un token 1/1 ad ogni mantenimento"
+      },
+      {
+        "name": "Priest of Titania",
+        "role": "Tappa per aggiungere 1 mana verde per ogni Elfo in gioco"
+      }
+    ],
+    "steps": [
+      "Turno 1: Llanowar Elves o Birds of Paradise",
+      "Turno 2: Priest of Titania (ora produce 2+ mana)",
+      "Turno 3: Gioca Natural Order sacrificando un elfo piccolo",
+      "Cerca Verdant Force dal mazzo e mettilo direttamente in gioco!",
+      "Hai un 8/8 al turno 3 che crea token ogni turno",
+      "Con Gaea's Cradle, puoi fare Natural Order anche al turno 2!"
+    ],
+    "result": "Creatura 8/8 in gioco al turno 2-3 con gli Elfi",
+    "category": "Combo Creature-Based"
+  },
+  {
+    "name": "Squirrel Nest + Earthcraft (Token Infiniti)",
+    "archetype": "Enchantress",
+    "difficulty": "Facile",
+    "cards": [
+      {
+        "name": "Squirrel Nest",
+        "role": "Tappa una terra per creare un token Scoiattolo 1/1"
+      },
+      {
+        "name": "Earthcraft",
+        "role": "Tappa una creatura per stappare una terra base"
+      }
+    ],
+    "steps": [
+      "Gioca Earthcraft e poi Squirrel Nest su una foresta base",
+      "Tappa la foresta con Squirrel Nest: crea un token Scoiattolo 1/1",
+      "Tappa lo Scoiattolo con Earthcraft: stappa la foresta!",
+      "Tappa di nuovo la foresta: crea un altro Scoiattolo",
+      "Ripeti all'infinito: crea un milione di Scoiattoli!",
+      "Attacca con un milione di 1/1 al prossimo turno!"
+    ],
+    "result": "Token infiniti in un turno (combo a 2 carte!)",
+    "category": "Combo Incantesimi"
+  }
+]
