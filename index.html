@@ -397,6 +397,13 @@
         </select>
     </div>
 
+    <div style="text-align:center;padding:8px;background:#16213e;border-bottom:1px solid #0f3460;">
+        <select id="format-select" style="padding:8px 16px;font-size:0.9em;background:#0f3460;border:2px solid #e94560;border-radius:8px;color:#fff;cursor:pointer;">
+            <option value="premodern">⚔️ Premodern</option>
+            <option value="oldschool">🏛️ Old School 93/94 (EC)</option>
+        </select>
+    </div>
+
     <div class="tab-bar">
         <div class="tab active" data-tab="home">🏠 Home</div>
         <div class="tab" data-tab="legal">Carte Legali</div>
@@ -407,12 +414,6 @@
 
     <div id="home-section">
         <div style="padding:20px;max-width:900px;margin:0 auto;">
-            <div style="text-align:center;margin-bottom:20px;">
-                <select id="format-select" style="padding:10px 20px;font-size:1em;background:#0f3460;border:2px solid #e94560;border-radius:8px;color:#fff;cursor:pointer;">
-                    <option value="premodern">⚔️ Premodern</option>
-                    <option value="oldschool">🏛️ Old School 93/94 (EC)</option>
-                </select>
-            </div>
             <h2 style="color:#e94560;margin-bottom:16px;text-align:center;" id="home-title">Premodern Tools</h2>
             <p style="color:#aaa;text-align:center;margin-bottom:24px;font-size:0.9em;" id="home-subtitle">Carte legali, combo, deckbuilder e simulatore matchup.</p>
             
@@ -525,13 +526,19 @@
             oldschool: { cards: 'oldschool_cards_data.json', combos: 'oldschool_combos.json', title: 'Old School 93/94 (EC)', subtitle: 'Eternal Central rules. Alpha fino a Fallen Empires.' },
         };
 
-        document.getElementById('format-select').addEventListener('change', (e) => {
+        document.getElementById('format-select').addEventListener('change', async (e) => {
             currentFormat = e.target.value;
             const cfg = FORMAT_CONFIG[currentFormat];
             document.getElementById('home-title').textContent = cfg.title;
             document.getElementById('home-subtitle').textContent = cfg.subtitle;
             populateArchetypeSelect();
-            loadData();
+            await loadData();
+            // Re-render current tab if not home
+            if (currentTab === 'legal' || currentTab === 'disputed') {
+                renderCards();
+            } else if (currentTab === 'combos') {
+                renderCombos();
+            }
         });
 
         async function loadData() {
