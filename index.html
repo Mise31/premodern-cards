@@ -539,11 +539,14 @@
             document.getElementById('home-title').textContent = cfg.title;
             document.getElementById('home-subtitle').textContent = cfg.subtitle;
             populateArchetypeSelect();
+            // Show loading state
+            document.getElementById('card-list').innerHTML = '<div class="loading">Caricamento ' + cfg.title + '...</div>';
             await loadData();
             // Re-render current tab if not home
             if (currentTab === 'legal' || currentTab === 'disputed') {
                 renderCards();
             } else if (currentTab === 'combos') {
+                document.getElementById('card-count').textContent = combosData.length + ' combo conosciute';
                 renderCombos();
             }
         });
@@ -694,7 +697,7 @@
         document.getElementById('sort-by').addEventListener('change', renderCards);
 
         document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', () => {
+            tab.addEventListener('click', async () => {
                 document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
                 currentTab = tab.dataset.tab;
@@ -715,6 +718,9 @@
                     document.getElementById('deckbuilder-section').classList.remove('hidden');
                 } else {
                     document.getElementById('card-list').classList.remove('hidden');
+                    if (!allData.legal_cards || allData.legal_cards.length === 0) {
+                        await loadData();
+                    }
                     renderCards();
                 }
             });
