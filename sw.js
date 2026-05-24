@@ -1,8 +1,6 @@
-const CACHE_NAME = 'premodern-v3';
+const CACHE_NAME = 'premodern-v4';
 const ASSETS_TO_CACHE = [
   './index.html',
-  './premodern_cards_data.json',
-  './premodern_combos.json',
   './manifest.json'
 ];
 

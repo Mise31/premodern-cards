@@ -554,18 +554,18 @@
         async function loadData() {
             const cfg = FORMAT_CONFIG[currentFormat];
             try {
-                const response = await fetch(cfg.cards);
+                const response = await fetch(cfg.cards + '?t=' + Date.now());
                 allData = await response.json();
                 document.getElementById('stats').textContent =
-                    `${allData.total_legal || allData.legal_cards?.length || 0} carte legali | ${allData.total_restricted || allData.total_disputed || 0} restricted/conflitto`;
-                // Don't render cards on load - Home is shown first
+                    `${allData.total_legal || allData.legal_cards?.length || 0} carte legali | ${allData.total_restricted || allData.total_disputed || 0} restricted/conflitto | ${cfg.title}`;
             } catch (e) {
+                allData = {legal_cards:[], restricted_cards:[], disputed_cards:[]};
                 document.getElementById('card-list').innerHTML =
-                    '<div class="loading">Errore: dati non trovati per questo formato</div>';
+                    '<div class="loading">Errore: dati non trovati per ' + cfg.title + '</div>';
             }
 
             try {
-                const comboResp = await fetch(cfg.combos);
+                const comboResp = await fetch(cfg.combos + '?t=' + Date.now());
                 combosData = await comboResp.json();
             } catch (e) {
                 combosData = [];
