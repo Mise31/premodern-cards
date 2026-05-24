@@ -5,8 +5,14 @@
     "difficulty": "Facile",
     "category": "Combo Kill",
     "cards": [
-      {"name": "Channel", "role": "Converti vita in mana incolore"},
-      {"name": "Fireball", "role": "X danni a qualsiasi bersaglio"}
+      {
+        "name": "Channel",
+        "role": "Converti vita in mana incolore"
+      },
+      {
+        "name": "Fireball",
+        "role": "X danni a qualsiasi bersaglio"
+      }
     ],
     "steps": [
       "Gioca Channel (paga vita per ottenere mana incolore)",
@@ -22,10 +28,22 @@
     "difficulty": "Difficile",
     "category": "Control",
     "cards": [
-      {"name": "Moat", "role": "Le creature senza volare non possono attaccare"},
-      {"name": "Serra Angel", "role": "4/4 volante vigilanza (attacca e blocca)"},
-      {"name": "Counterspell", "role": "Annulla qualsiasi magia"},
-      {"name": "Swords to Plowshares", "role": "Esilia qualsiasi creatura"}
+      {
+        "name": "Moat",
+        "role": "Le creature senza volare non possono attaccare"
+      },
+      {
+        "name": "Serra Angel",
+        "role": "4/4 volante vigilanza (attacca e blocca)"
+      },
+      {
+        "name": "Counterspell",
+        "role": "Annulla qualsiasi magia"
+      },
+      {
+        "name": "Swords to Plowshares",
+        "role": "Esilia qualsiasi creatura"
+      }
     ],
     "steps": [
       "Controlla il gioco con counter e removal nei primi turni",
@@ -41,9 +59,18 @@
     "archetype": "Dreams Combo",
     "difficulty": "Media",
     "cards": [
-      {"name": "Underworld Dreams", "role": "L'avversario perde 1 vita per ogni carta pescata"},
-      {"name": "Wheel of Fortune", "role": "Tutti scartano e pescano 7 carte"},
-      {"name": "Timetwister", "role": "Tutti rimescolano e pescano 7"}
+      {
+        "name": "Underworld Dreams",
+        "role": "L'avversario perde 1 vita per ogni carta pescata"
+      },
+      {
+        "name": "Wheel of Fortune",
+        "role": "Tutti scartano e pescano 7 carte"
+      },
+      {
+        "name": "Timetwister",
+        "role": "Tutti rimescolano e pescano 7"
+      }
     ],
     "steps": [
       "Gioca Underworld Dreams",
@@ -59,9 +86,18 @@
     "archetype": "Reanimator",
     "difficulty": "Media",
     "cards": [
-      {"name": "Animate Dead", "role": "Riporta creatura dal cimitero"},
-      {"name": "Bazaar of Baghdad", "role": "Pesca 2, scarta 3 (riempi cimitero)"},
-      {"name": "Triskelion", "role": "Entra con 3 segnalini, rimuovili per fare danno"}
+      {
+        "name": "Animate Dead",
+        "role": "Riporta creatura dal cimitero"
+      },
+      {
+        "name": "Bazaar of Baghdad",
+        "role": "Pesca 2, scarta 3 (riempi cimitero)"
+      },
+      {
+        "name": "Triskelion",
+        "role": "Entra con 3 segnalini, rimuovili per fare danno"
+      }
     ],
     "steps": [
       "Usa Bazaar of Baghdad per scartare creature grosse nel cimitero",
@@ -76,8 +112,14 @@
     "archetype": "Combo Mana",
     "difficulty": "Media",
     "cards": [
-      {"name": "Basalt Monolith", "role": "Tappa per 3 mana, si stappa per 3"},
-      {"name": "Power Artifact", "role": "Riduce il costo di attivazione di 2"}
+      {
+        "name": "Basalt Monolith",
+        "role": "Tappa per 3 mana, si stappa per 3"
+      },
+      {
+        "name": "Power Artifact",
+        "role": "Riduce il costo di attivazione di 2"
+      }
     ],
     "steps": [
       "Gioca Basalt Monolith (tappa per 3 mana incolore)",
@@ -94,8 +136,14 @@
     "archetype": "Mirror Combo",
     "difficulty": "Media",
     "cards": [
-      {"name": "Mirror Universe", "role": "Scambia i punti vita con l'avversario"},
-      {"name": "City of Brass", "role": "Ti fa danno quando la tappi (abbassa la tua vita)"}
+      {
+        "name": "Mirror Universe",
+        "role": "Scambia i punti vita con l'avversario"
+      },
+      {
+        "name": "City of Brass",
+        "role": "Ti fa danno quando la tappi (abbassa la tua vita)"
+      }
     ],
     "steps": [
       "Abbassa la tua vita il piu possibile (City of Brass, fetchland, ecc.)",
@@ -111,9 +159,18 @@
     "archetype": "Erhnamgeddon",
     "difficulty": "Facile",
     "cards": [
-      {"name": "Erhnam Djinn", "role": "4/5 per 4 mana (enorme per l'epoca)"},
-      {"name": "Armageddon", "role": "Distrugge TUTTE le terre"},
-      {"name": "Birds of Paradise", "role": "Mana acceleration"}
+      {
+        "name": "Erhnam Djinn",
+        "role": "4/5 per 4 mana (enorme per l'epoca)"
+      },
+      {
+        "name": "Armageddon",
+        "role": "Distrugge TUTTE le terre"
+      },
+      {
+        "name": "Birds of Paradise",
+        "role": "Mana acceleration"
+      }
     ],
     "steps": [
       "Turno 1: Birds of Paradise o Mox",
@@ -129,9 +186,18 @@
     "archetype": "Mono Black",
     "difficulty": "Media",
     "cards": [
-      {"name": "Hymn to Tourach", "role": "L'avversario scarta 2 carte a caso"},
-      {"name": "Nether Void", "role": "Tutte le magie costano 3 in piu"},
-      {"name": "Hypnotic Specter", "role": "Quando fa danno, l'avversario scarta a caso"}
+      {
+        "name": "Hymn to Tourach",
+        "role": "L'avversario scarta 2 carte a caso"
+      },
+      {
+        "name": "Nether Void",
+        "role": "Tutte le magie costano 3 in piu"
+      },
+      {
+        "name": "Hypnotic Specter",
+        "role": "Quando fa danno, l'avversario scarta a caso"
+      }
     ],
     "steps": [
       "Turno 1: Dark Ritual + Hypnotic Specter o Hymn to Tourach",
@@ -147,9 +213,18 @@
     "archetype": "Atog",
     "difficulty": "Facile",
     "cards": [
-      {"name": "Atog", "role": "Sacrifica artefatti per +2/+2"},
-      {"name": "Berserk", "role": "Raddoppia la forza di una creatura (muore a fine turno)"},
-      {"name": "Black Vise", "role": "Fa danno se l'avversario ha 5+ carte in mano"}
+      {
+        "name": "Atog",
+        "role": "Sacrifica artefatti per +2/+2"
+      },
+      {
+        "name": "Berserk",
+        "role": "Raddoppia la forza di una creatura (muore a fine turno)"
+      },
+      {
+        "name": "Black Vise",
+        "role": "Fa danno se l'avversario ha 5+ carte in mano"
+      }
     ],
     "steps": [
       "Gioca artefatti economici (Mox, Black Vise, ecc.)",
@@ -166,9 +241,18 @@
     "archetype": "Stasis",
     "difficulty": "Difficile",
     "cards": [
-      {"name": "Stasis", "role": "Nessuno stappa i permanenti"},
-      {"name": "Birds of Paradise", "role": "Produce mana senza stappare (paga Stasis)"},
-      {"name": "Kismet", "role": "I permanenti avversari entrano tappati"}
+      {
+        "name": "Stasis",
+        "role": "Nessuno stappa i permanenti"
+      },
+      {
+        "name": "Birds of Paradise",
+        "role": "Produce mana senza stappare (paga Stasis)"
+      },
+      {
+        "name": "Kismet",
+        "role": "I permanenti avversari entrano tappati"
+      }
     ],
     "steps": [
       "Gioca Kismet: permanenti avversari entrano tappati",
@@ -184,9 +268,18 @@
     "archetype": "Troll Disco",
     "difficulty": "Media",
     "cards": [
-      {"name": "Sedge Troll", "role": "2/2 che si rigenera (non muore a Disk)"},
-      {"name": "Nevinyrral's Disk", "role": "Distrugge tutti gli artefatti, creature e incantesimi"},
-      {"name": "Mishra's Factory", "role": "Terra che diventa creatura 2/2"}
+      {
+        "name": "Sedge Troll",
+        "role": "2/2 che si rigenera (non muore a Disk)"
+      },
+      {
+        "name": "Nevinyrral's Disk",
+        "role": "Distrugge tutti gli artefatti, creature e incantesimi"
+      },
+      {
+        "name": "Mishra's Factory",
+        "role": "Terra che diventa creatura 2/2"
+      }
     ],
     "steps": [
       "Gioca Sedge Troll (si rigenera se controlli una palude)",
@@ -203,8 +296,14 @@
     "archetype": "Tax Tower",
     "difficulty": "Facile",
     "cards": [
-      {"name": "Land Tax", "role": "Se hai meno terre, cerca 3 terre base dal mazzo"},
-      {"name": "Ivory Tower", "role": "Guadagni vita pari alle carte in mano oltre 4"}
+      {
+        "name": "Land Tax",
+        "role": "Se hai meno terre, cerca 3 terre base dal mazzo"
+      },
+      {
+        "name": "Ivory Tower",
+        "role": "Guadagni vita pari alle carte in mano oltre 4"
+      }
     ],
     "steps": [
       "Gioca Land Tax e Ivory Tower",
@@ -220,8 +319,14 @@
     "archetype": "Icy Assassin",
     "difficulty": "Facile",
     "cards": [
-      {"name": "Icy Manipulator", "role": "Tappa qualsiasi permanente"},
-      {"name": "Royal Assassin", "role": "Distruggi qualsiasi creatura tappata"}
+      {
+        "name": "Icy Manipulator",
+        "role": "Tappa qualsiasi permanente"
+      },
+      {
+        "name": "Royal Assassin",
+        "role": "Distruggi qualsiasi creatura tappata"
+      }
     ],
     "steps": [
       "Gioca Royal Assassin e Icy Manipulator",
@@ -237,9 +342,18 @@
     "archetype": "Vise Age",
     "difficulty": "Media",
     "cards": [
-      {"name": "Black Vise", "role": "Fa danno se l'avversario ha 5+ carte"},
-      {"name": "Howling Mine", "role": "Tutti pescano una carta extra"},
-      {"name": "Copy Artifact", "role": "Copia un artefatto in gioco"}
+      {
+        "name": "Black Vise",
+        "role": "Fa danno se l'avversario ha 5+ carte"
+      },
+      {
+        "name": "Howling Mine",
+        "role": "Tutti pescano una carta extra"
+      },
+      {
+        "name": "Copy Artifact",
+        "role": "Copia un artefatto in gioco"
+      }
     ],
     "steps": [
       "Turno 1: Black Vise (l'avversario ha 7 carte, prende 3 danni!)",
@@ -255,9 +369,18 @@
     "archetype": "Eureka",
     "difficulty": "Media",
     "cards": [
-      {"name": "Eureka", "role": "Tutti mettono permanenti in gioco gratis dalla mano"},
-      {"name": "Colossus of Sardia", "role": "9/9 trampling"},
-      {"name": "Force of Nature", "role": "8/8 trampling"}
+      {
+        "name": "Eureka",
+        "role": "Tutti mettono permanenti in gioco gratis dalla mano"
+      },
+      {
+        "name": "Colossus of Sardia",
+        "role": "9/9 trampling"
+      },
+      {
+        "name": "Force of Nature",
+        "role": "8/8 trampling"
+      }
     ],
     "steps": [
       "Riempi la mano di creature enormi",
@@ -267,5 +390,293 @@
       "Attacca con creature enormi al turno successivo"
     ],
     "result": "Multiple creature enormi in gioco gratis"
+  },
+  {
+    "name": "Time Vault + Twiddle (Turni Infiniti)",
+    "archetype": "Twiddle Vault",
+    "difficulty": "Media",
+    "category": "Combo Kill",
+    "cards": [
+      {
+        "name": "Time Vault",
+        "role": "Non si stappa normalmente. Se si stappa, prendi un turno extra"
+      },
+      {
+        "name": "Twiddle",
+        "role": "Stappa o tappa un permanente"
+      },
+      {
+        "name": "Transmute Artifact",
+        "role": "Cerca Time Vault dal mazzo"
+      }
+    ],
+    "steps": [
+      "Gioca Time Vault",
+      "Gioca Twiddle per stappare Time Vault",
+      "Tappa Time Vault: prendi un turno extra!",
+      "Nel turno extra, gioca un altro Twiddle o Recall per riprendere Twiddle",
+      "Ripeti: turni infiniti!"
+    ],
+    "result": "Turni extra infiniti"
+  },
+  {
+    "name": "Living Plane + The Abyss",
+    "archetype": "Prison",
+    "difficulty": "Media",
+    "category": "Lock",
+    "cards": [
+      {
+        "name": "Living Plane",
+        "role": "Tutte le terre diventano creature 1/1"
+      },
+      {
+        "name": "The Abyss",
+        "role": "Ogni turno distruggi una creatura non-artefatto"
+      }
+    ],
+    "steps": [
+      "Gioca The Abyss (distrugge una creatura ogni turno)",
+      "Gioca Living Plane: tutte le terre diventano creature 1/1!",
+      "The Abyss ora distrugge una TERRA dell'avversario ogni turno",
+      "L'avversario perde tutte le terre in pochi turni",
+      "Senza terre non puo fare nulla"
+    ],
+    "result": "Distruggi tutte le terre avversarie ogni turno"
+  },
+  {
+    "name": "Transmute Artifact + Tetravus + Triskelion",
+    "archetype": "Artifact Combo",
+    "difficulty": "Media",
+    "category": "Combo",
+    "cards": [
+      {
+        "name": "Transmute Artifact",
+        "role": "Sacrifica un artefatto, cerca qualsiasi artefatto dal mazzo"
+      },
+      {
+        "name": "Tetravus",
+        "role": "4/4 volante che crea token 1/1 volanti"
+      },
+      {
+        "name": "Triskelion",
+        "role": "4/4 che fa 3 danni diretti"
+      }
+    ],
+    "steps": [
+      "Gioca un artefatto economico (Mox, Sol Ring)",
+      "Gioca Transmute Artifact: sacrifica l'artefatto economico",
+      "Cerca Triskelion o Tetravus dal mazzo e mettilo in gioco!",
+      "Triskelion fa 3 danni diretti appena entra",
+      "Oppure cerca qualsiasi artefatto ti serva in quel momento"
+    ],
+    "result": "Tutor per qualsiasi artefatto"
+  },
+  {
+    "name": "Chains of Mephistopheles + Howling Mine",
+    "archetype": "Chains",
+    "difficulty": "Difficile",
+    "category": "Lock",
+    "cards": [
+      {
+        "name": "Chains of Mephistopheles",
+        "role": "Se peschi (non nella draw step), scarta prima. Se non puoi, milli"
+      },
+      {
+        "name": "Howling Mine",
+        "role": "Tutti pescano una carta extra"
+      }
+    ],
+    "steps": [
+      "Gioca Chains of Mephistopheles",
+      "Gioca Howling Mine: tutti pescano una carta extra",
+      "Ma Chains trasforma la pesca extra in: scarta una carta, poi pesca",
+      "Se l'avversario non ha carte in mano, milla invece di pescare!",
+      "Tu peschi normalmente nella draw step (Chains non si applica li)"
+    ],
+    "result": "L'avversario si milla o non pesca mai carte extra"
+  },
+  {
+    "name": "Juzam Djinn + Dark Ritual (Aggro Nero)",
+    "archetype": "Mono Black",
+    "difficulty": "Facile",
+    "category": "Aggro",
+    "cards": [
+      {
+        "name": "Juzam Djinn",
+        "role": "5/5 per 4 mana (il piu grosso per il costo)"
+      },
+      {
+        "name": "Dark Ritual",
+        "role": "Paga 1 mana nero, ottieni 3"
+      },
+      {
+        "name": "Hypnotic Specter",
+        "role": "2/2 volante, scarta a caso quando fa danno"
+      }
+    ],
+    "steps": [
+      "Turno 1: Swamp + Dark Ritual + Hypnotic Specter",
+      "Turno 2: Hypnotic Specter attacca, l'avversario scarta a caso",
+      "Turno 2: Dark Ritual + Juzam Djinn (5/5 al turno 2!)",
+      "Turno 3: Attacca con entrambi per 7 danni",
+      "L'avversario ha meno carte e meno vita, non riesce a rispondere"
+    ],
+    "result": "7 danni al turno 3, avversario senza carte"
+  },
+  {
+    "name": "Savannah Lions + Crusade + Armageddon (White Weenie)",
+    "archetype": "White Weenie",
+    "difficulty": "Facile",
+    "category": "Aggro",
+    "cards": [
+      {
+        "name": "Savannah Lions",
+        "role": "2/1 per 1 mana bianco"
+      },
+      {
+        "name": "Crusade",
+        "role": "+1/+1 a tutte le creature bianche"
+      },
+      {
+        "name": "Armageddon",
+        "role": "Distrugge tutte le terre"
+      }
+    ],
+    "steps": [
+      "Turno 1-2: Gioca creature bianche economiche (Lions, White Knight)",
+      "Turno 2-3: Gioca Crusade: tutte le tue creature prendono +1/+1",
+      "Turno 3-4: Gioca Armageddon: tutte le terre distrutte!",
+      "Tu hai gia creature in campo, l'avversario no",
+      "Attacca ogni turno, l'avversario non puo fare nulla senza terre"
+    ],
+    "result": "Board pieno + avversario senza terre"
+  },
+  {
+    "name": "Mishra's Factory + Strip Mine (Mana Denial)",
+    "archetype": "Aggro",
+    "difficulty": "Facile",
+    "category": "Tempo",
+    "cards": [
+      {
+        "name": "Mishra's Factory",
+        "role": "Terra che diventa creatura 2/2"
+      },
+      {
+        "name": "Strip Mine",
+        "role": "Distrugge qualsiasi terra"
+      }
+    ],
+    "steps": [
+      "Gioca Mishra's Factory (terra che attacca come 2/2)",
+      "Gioca Strip Mine per distruggere la terra migliore dell'avversario",
+      "Con 4 Strip Mine (unrestricted in EC!), distruggi 4 terre!",
+      "Mishra's Factory attacca per 2 ogni turno",
+      "L'avversario non ha mana per giocare nulla"
+    ],
+    "result": "Mana denial + clock con terre-creature"
+  },
+  {
+    "name": "Sylvan Library + Mirror Universe",
+    "archetype": "Mirror Combo",
+    "difficulty": "Media",
+    "category": "Combo",
+    "cards": [
+      {
+        "name": "Sylvan Library",
+        "role": "Pesca 2 carte extra pagando 4 vita per carta"
+      },
+      {
+        "name": "Mirror Universe",
+        "role": "Scambia i punti vita con l'avversario"
+      }
+    ],
+    "steps": [
+      "Gioca Sylvan Library: ogni turno puoi pescare 2 extra pagando 4 vita ciascuna",
+      "Pesca aggressivamente: paga 8 vita per turno per 2 carte extra",
+      "Abbassati a 1-2 vita (hai pescato tantissime carte!)",
+      "Gioca Mirror Universe: scambia vita con l'avversario",
+      "Ora tu hai 15+ vita e lui ha 1-2. Qualsiasi danno lo finisce"
+    ],
+    "result": "Pesca massiva + scambio vita letale"
+  },
+  {
+    "name": "Serendib Efreet + Unstable Mutation (UR Aggro)",
+    "archetype": "UR Aggro",
+    "difficulty": "Facile",
+    "category": "Aggro",
+    "cards": [
+      {
+        "name": "Serendib Efreet",
+        "role": "3/4 volante per 3 mana (fortissimo!)"
+      },
+      {
+        "name": "Unstable Mutation",
+        "role": "+3/+3 ma perde 1/1 ogni turno"
+      },
+      {
+        "name": "Lightning Bolt",
+        "role": "3 danni per 1 mana"
+      }
+    ],
+    "steps": [
+      "Turno 1-2: Gioca creature aggressive (Flying Men, Serendib)",
+      "Metti Unstable Mutation su una creatura: diventa enorme per 3 turni!",
+      "Serendib + Mutation = 6/7 volante!",
+      "Brucia l'avversario con Lightning Bolt e Chain Lightning",
+      "Vinci prima che Mutation riduca la creatura a 0"
+    ],
+    "result": "Danni volanti enormi nei primi turni"
+  },
+  {
+    "name": "Recall + Ancestral Recall + Time Walk (Broken Blue)",
+    "archetype": "The Deck",
+    "difficulty": "Difficile",
+    "category": "Control",
+    "cards": [
+      {
+        "name": "Ancestral Recall",
+        "role": "Pesca 3 carte per 1 mana (la carta piu forte di sempre)"
+      },
+      {
+        "name": "Time Walk",
+        "role": "Turno extra per 2 mana"
+      },
+      {
+        "name": "Recall",
+        "role": "Riprendi carte dal cimitero scartando altrettante"
+      }
+    ],
+    "steps": [
+      "Gioca Ancestral Recall: pesca 3 carte per 1 mana!",
+      "Gioca Time Walk: prendi un turno extra per 2 mana!",
+      "Usa Recall per riprendere Time Walk o Ancestral dal cimitero",
+      "Ripeti: turni extra e carte extra ogni turno",
+      "L'avversario non ha mai la possibilita di giocare"
+    ],
+    "result": "Vantaggio carte e turni schiacciante"
+  },
+  {
+    "name": "Goblin King + Blood Moon (Goblins)",
+    "archetype": "Goblins",
+    "difficulty": "Facile",
+    "category": "Aggro",
+    "cards": [
+      {
+        "name": "Goblin King",
+        "role": "Tutti i Goblin prendono +1/+1 e mountainwalk"
+      },
+      {
+        "name": "Blood Moon",
+        "role": "Tutte le terre non-base diventano montagne"
+      }
+    ],
+    "steps": [
+      "Gioca creature Goblin economiche",
+      "Gioca Blood Moon: tutte le terre non-base diventano Montagne!",
+      "Gioca Goblin King: tutti i Goblin hanno mountainwalk",
+      "Mountainwalk = imblocabili se l'avversario ha montagne",
+      "Con Blood Moon, l'avversario HA montagne! Goblin imblocabili!"
+    ],
+    "result": "Goblin imblocabili + mana denial"
   }
 ]

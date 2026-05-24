@@ -1,0 +1,182 @@
+{
+  "the_deck": {
+    "name": "The Deck",
+    "type": "Control",
+    "profile": {
+      "speed": 1.5,
+      "disruption": 5,
+      "resilience": 4.5,
+      "card_advantage": 5,
+      "consistency": 4
+    },
+    "desc": "Il mazzo control definitivo. Moat + Serra + Counter + Library."
+  },
+  "mono_black_os": {
+    "name": "Mono Black",
+    "type": "Aggro",
+    "profile": {
+      "speed": 4,
+      "disruption": 4,
+      "resilience": 2.5,
+      "card_advantage": 2.5,
+      "consistency": 4
+    },
+    "desc": "Dark Ritual + Juzam + Hymn + Hypnotic Specter."
+  },
+  "robots": {
+    "name": "Robots (Aggro Artifacts)",
+    "type": "Aggro",
+    "profile": {
+      "speed": 4.5,
+      "disruption": 1.5,
+      "resilience": 2,
+      "card_advantage": 1.5,
+      "consistency": 4
+    },
+    "desc": "Su-Chi, Juggernaut, Mishra's Factory, Mana Vault."
+  },
+  "atog_os": {
+    "name": "Atog",
+    "type": "Aggro",
+    "profile": {
+      "speed": 4.5,
+      "disruption": 2,
+      "resilience": 1.5,
+      "card_advantage": 1.5,
+      "consistency": 3.5
+    },
+    "desc": "Atog + Berserk + artefatti sacrificabili. One-shot kill."
+  },
+  "erhnamgeddon": {
+    "name": "Erhnamgeddon",
+    "type": "Midrange",
+    "profile": {
+      "speed": 3.5,
+      "disruption": 3,
+      "resilience": 3,
+      "card_advantage": 2.5,
+      "consistency": 3.5
+    },
+    "desc": "Erhnam Djinn + Armageddon. Creature + land destruction."
+  },
+  "white_weenie_os": {
+    "name": "White Weenie",
+    "type": "Aggro",
+    "profile": {
+      "speed": 4,
+      "disruption": 2.5,
+      "resilience": 2,
+      "card_advantage": 1.5,
+      "consistency": 4.5
+    },
+    "desc": "Savannah Lions + Crusade + Armageddon + Swords."
+  },
+  "ur_aggro": {
+    "name": "UR Aggro (Lions Dib Bolt)",
+    "type": "Aggro",
+    "profile": {
+      "speed": 4.5,
+      "disruption": 2,
+      "resilience": 2,
+      "card_advantage": 2,
+      "consistency": 4
+    },
+    "desc": "Serendib + Lightning Bolt + Chain Lightning. Veloce e brutale."
+  },
+  "twiddle_vault": {
+    "name": "Twiddle Vault",
+    "type": "Combo",
+    "profile": {
+      "speed": 3,
+      "disruption": 2,
+      "resilience": 2,
+      "card_advantage": 3.5,
+      "consistency": 2.5
+    },
+    "desc": "Time Vault + Twiddle = turni infiniti."
+  },
+  "power_monolith": {
+    "name": "Power Monolith",
+    "type": "Combo",
+    "profile": {
+      "speed": 3,
+      "disruption": 2,
+      "resilience": 2.5,
+      "card_advantage": 3,
+      "consistency": 3
+    },
+    "desc": "Basalt Monolith + Power Artifact = mana infinito + Fireball."
+  },
+  "stasis_os": {
+    "name": "Stasis",
+    "type": "Control",
+    "profile": {
+      "speed": 2,
+      "disruption": 3.5,
+      "resilience": 3,
+      "card_advantage": 2.5,
+      "consistency": 2.5
+    },
+    "desc": "Stasis + Birds/Kismet. Lock totale."
+  },
+  "troll_disco": {
+    "name": "Troll Disco",
+    "type": "Control",
+    "profile": {
+      "speed": 2.5,
+      "disruption": 4,
+      "resilience": 3.5,
+      "card_advantage": 3,
+      "consistency": 3
+    },
+    "desc": "Sedge Troll + Nevinyrral's Disk. Board wipe ripetibile."
+  },
+  "tax_tower": {
+    "name": "Tax Tower",
+    "type": "Control",
+    "profile": {
+      "speed": 1.5,
+      "disruption": 2.5,
+      "resilience": 4.5,
+      "card_advantage": 4,
+      "consistency": 3.5
+    },
+    "desc": "Land Tax + Ivory Tower. Vita e carte infinite."
+  },
+  "dreams_combo": {
+    "name": "Dreams Combo",
+    "type": "Combo",
+    "profile": {
+      "speed": 3.5,
+      "disruption": 1.5,
+      "resilience": 2,
+      "card_advantage": 2.5,
+      "consistency": 3
+    },
+    "desc": "Underworld Dreams + Wheel of Fortune. 7+ danni da pesca."
+  },
+  "eureka": {
+    "name": "Eureka",
+    "type": "Combo",
+    "profile": {
+      "speed": 3,
+      "disruption": 1,
+      "resilience": 2,
+      "card_advantage": 2,
+      "consistency": 2.5
+    },
+    "desc": "Eureka + creature enormi in gioco gratis."
+  },
+  "goblins_os": {
+    "name": "Goblins",
+    "type": "Aggro",
+    "profile": {
+      "speed": 4,
+      "disruption": 1.5,
+      "resilience": 1.5,
+      "card_advantage": 1.5,
+      "consistency": 3.5
+    },
+    "desc": "Goblin King + Blood Moon. Imblocabili e veloci."
+  }
+}
