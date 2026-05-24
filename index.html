@@ -398,14 +398,57 @@
     </div>
 
     <div class="tab-bar">
-        <div class="tab active" data-tab="legal">Carte Legali</div>
+        <div class="tab active" data-tab="home">🏠 Home</div>
+        <div class="tab" data-tab="legal">Carte Legali</div>
         <div class="tab" data-tab="disputed">⚠ In Conflitto</div>
         <div class="tab" data-tab="combos">🔥 Combo</div>
         <div class="tab" data-tab="deckbuilder">⚔️ Deckbuilder</div>
     </div>
 
+    <div id="home-section">
+        <div style="padding:20px;max-width:900px;margin:0 auto;">
+            <h2 style="color:#e94560;margin-bottom:16px;text-align:center;">Benvenuto in Premodern Tools</h2>
+            <p style="color:#aaa;text-align:center;margin-bottom:24px;font-size:0.9em;">Carte legali, combo, deckbuilder e simulatore matchup per il formato Premodern.</p>
+            
+            <h3 style="color:#fff;margin-bottom:12px;">🔗 Risorse Esterne — Liste e Tornei</h3>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;">
+                <a href="https://www.mtgtop8.com/format?f=PREM" target="_blank" style="flex:1;min-width:140px;padding:14px;background:#16213e;border:1px solid #0f3460;border-radius:8px;text-decoration:none;text-align:center;color:#e0e0e0;font-size:0.9em;">
+                    <div style="font-size:1.3em;margin-bottom:4px;">🏆</div>
+                    MTGTop8<br><span style="color:#888;font-size:0.75em;">Tornei e risultati</span>
+                </a>
+                <a href="https://mtgdecks.net/Premodern" target="_blank" style="flex:1;min-width:140px;padding:14px;background:#16213e;border:1px solid #0f3460;border-radius:8px;text-decoration:none;text-align:center;color:#e0e0e0;font-size:0.9em;">
+                    <div style="font-size:1.3em;margin-bottom:4px;">📊</div>
+                    MTGDecks<br><span style="color:#888;font-size:0.75em;">Meta e archetipi</span>
+                </a>
+                <a href="https://www.mtggoldfish.com/metagame/premodern" target="_blank" style="flex:1;min-width:140px;padding:14px;background:#16213e;border:1px solid #0f3460;border-radius:8px;text-decoration:none;text-align:center;color:#e0e0e0;font-size:0.9em;">
+                    <div style="font-size:1.3em;margin-bottom:4px;">🐟</div>
+                    MTGGoldfish<br><span style="color:#888;font-size:0.75em;">Prezzi e liste</span>
+                </a>
+                <a href="https://premodernmagic.com/" target="_blank" style="flex:1;min-width:140px;padding:14px;background:#16213e;border:1px solid #0f3460;border-radius:8px;text-decoration:none;text-align:center;color:#e0e0e0;font-size:0.9em;">
+                    <div style="font-size:1.3em;margin-bottom:4px;">📖</div>
+                    PremodernMagic<br><span style="color:#888;font-size:0.75em;">Articoli e deck tech</span>
+                </a>
+                <a href="https://www.cardmarket.com/en/Magic" target="_blank" style="flex:1;min-width:140px;padding:14px;background:#16213e;border:1px solid #0f3460;border-radius:8px;text-decoration:none;text-align:center;color:#e0e0e0;font-size:0.9em;">
+                    <div style="font-size:1.3em;margin-bottom:4px;">💶</div>
+                    Cardmarket<br><span style="color:#888;font-size:0.75em;">Compra carte (EU)</span>
+                </a>
+                <a href="https://www.cardtrader.com/" target="_blank" style="flex:1;min-width:140px;padding:14px;background:#16213e;border:1px solid #0f3460;border-radius:8px;text-decoration:none;text-align:center;color:#e0e0e0;font-size:0.9em;">
+                    <div style="font-size:1.3em;margin-bottom:4px;">🃏</div>
+                    CardTrader<br><span style="color:#888;font-size:0.75em;">Compra carte (EU)</span>
+                </a>
+            </div>
+
+            <h3 style="color:#fff;margin-bottom:12px;">⚡ Accesso Rapido</h3>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;">
+                <button onclick="document.querySelector('[data-tab=legal]').click()" style="flex:1;min-width:120px;padding:12px;background:#0f3460;border:1px solid #e94560;border-radius:8px;color:#e0e0e0;cursor:pointer;font-size:0.85em;">📋 Carte Legali (5372)</button>
+                <button onclick="document.querySelector('[data-tab=combos]').click()" style="flex:1;min-width:120px;padding:12px;background:#0f3460;border:1px solid #e94560;border-radius:8px;color:#e0e0e0;cursor:pointer;font-size:0.85em;">🔥 Combo del Formato</button>
+                <button onclick="document.querySelector('[data-tab=deckbuilder]').click()" style="flex:1;min-width:120px;padding:12px;background:#0f3460;border:1px solid #e94560;border-radius:8px;color:#e0e0e0;cursor:pointer;font-size:0.85em;">⚔️ Deckbuilder + Matchup</button>
+            </div>
+        </div>
+    </div>
+
     <div id="card-count"></div>
-    <div class="card-list" id="card-list">
+    <div class="card-list hidden" id="card-list">
         <div class="loading">Caricamento dati...</div>
     </div>
     <div class="combo-list hidden" id="combo-list"></div>
@@ -508,7 +551,7 @@
                 allData = await response.json();
                 document.getElementById('stats').textContent =
                     `${allData.total_legal} carte legali | ${allData.total_disputed} in conflitto | Prezzi Cardmarket (via Scryfall)`;
-                renderCards();
+                // Don't render cards on load - Home is shown first
             } catch (e) {
                 document.getElementById('card-list').innerHTML =
                     '<div class="loading">Errore: esegui prima fetch_premodern_data.py per generare i dati</div>';
@@ -656,17 +699,20 @@
                 tab.classList.add('active');
                 currentTab = tab.dataset.tab;
 
+                document.getElementById('home-section').classList.add('hidden');
                 document.getElementById('card-list').classList.add('hidden');
                 document.getElementById('combo-list').classList.add('hidden');
                 document.getElementById('deckbuilder-section').classList.add('hidden');
+                document.getElementById('card-count').textContent = '';
 
-                if (currentTab === 'combos') {
+                if (currentTab === 'home') {
+                    document.getElementById('home-section').classList.remove('hidden');
+                } else if (currentTab === 'combos') {
                     document.getElementById('combo-list').classList.remove('hidden');
                     document.getElementById('card-count').textContent = `${combosData.length} combo conosciute`;
                     renderCombos();
                 } else if (currentTab === 'deckbuilder') {
                     document.getElementById('deckbuilder-section').classList.remove('hidden');
-                    document.getElementById('card-count').textContent = '';
                 } else {
                     document.getElementById('card-list').classList.remove('hidden');
                     renderCards();
