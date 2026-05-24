@@ -526,6 +526,7 @@
         let combosData = [];
         let currentTab = 'home';
         let currentFormat = 'premodern';
+        let loadedFormat = '';
 
         // Format-specific data files
         const FORMAT_CONFIG = {
@@ -556,6 +557,7 @@
             try {
                 const response = await fetch(cfg.cards + '?t=' + Date.now());
                 allData = await response.json();
+                loadedFormat = currentFormat;
                 document.getElementById('stats').textContent =
                     `${allData.total_legal || allData.legal_cards?.length || 0} carte legali | ${allData.total_restricted || allData.total_disputed || 0} restricted/conflitto | ${cfg.title}`;
             } catch (e) {
@@ -712,13 +714,14 @@
                     document.getElementById('home-section').classList.remove('hidden');
                 } else if (currentTab === 'combos') {
                     document.getElementById('combo-list').classList.remove('hidden');
+                    if (loadedFormat !== currentFormat) await loadData();
                     document.getElementById('card-count').textContent = `${combosData.length} combo conosciute`;
                     renderCombos();
                 } else if (currentTab === 'deckbuilder') {
                     document.getElementById('deckbuilder-section').classList.remove('hidden');
                 } else {
                     document.getElementById('card-list').classList.remove('hidden');
-                    if (!allData.legal_cards || allData.legal_cards.length === 0) {
+                    if (loadedFormat !== currentFormat) {
                         await loadData();
                     }
                     renderCards();
