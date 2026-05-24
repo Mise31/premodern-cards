@@ -401,6 +401,7 @@
         <div class="tab active" data-tab="legal">Carte Legali</div>
         <div class="tab" data-tab="disputed">⚠ In Conflitto</div>
         <div class="tab" data-tab="combos">🔥 Combo</div>
+        <div class="tab" data-tab="deckbuilder">⚔️ Deckbuilder</div>
     </div>
 
     <div id="card-count"></div>
@@ -408,6 +409,52 @@
         <div class="loading">Caricamento dati...</div>
     </div>
     <div class="combo-list hidden" id="combo-list"></div>
+    <div class="hidden" id="deckbuilder-section" style="padding:20px;max-width:1200px;margin:0 auto;">
+        <div style="display:flex;gap:20px;flex-wrap:wrap;">
+            <div style="flex:1;min-width:300px;">
+                <h3 style="color:#e94560;margin-bottom:10px;">📝 Lista Mazzo</h3>
+                <textarea id="deck-input" placeholder="Incolla la tua lista qui...&#10;Formato: 4 Lightning Bolt&#10;4 Counterspell&#10;...&#10;&#10;Sideboard&#10;3 Pyroblast&#10;2 Tormod's Crypt" style="width:100%;height:300px;background:#0f0f1a;border:1px solid #0f3460;border-radius:8px;color:#e0e0e0;padding:12px;font-family:monospace;font-size:0.85em;resize:vertical;"></textarea>
+                <div style="display:flex;gap:8px;margin-top:10px;">
+                    <button id="analyze-deck-btn" style="flex:1;padding:10px;background:#e94560;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:0.9em;">📊 Analizza Mazzo</button>
+                    <button id="matchup-btn" style="flex:1;padding:10px;background:#0f3460;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:0.9em;">⚔️ Simula Matchup</button>
+                </div>
+            </div>
+            <div style="flex:1;min-width:300px;">
+                <h3 style="color:#e94560;margin-bottom:10px;">📊 Profilo Mazzo</h3>
+                <canvas id="radar-chart" width="350" height="350" style="background:#0f0f1a;border-radius:8px;border:1px solid #0f3460;max-width:100%;"></canvas>
+                <div id="deck-stats" style="margin-top:10px;font-size:0.85em;color:#aaa;"></div>
+            </div>
+        </div>
+        <div id="matchup-panel" style="display:none;margin-top:20px;">
+            <h3 style="color:#e94560;margin-bottom:10px;">⚔️ Simulazione Matchup</h3>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+                <select id="matchup-archetype" style="flex:1;padding:8px;background:#0f0f1a;border:1px solid #0f3460;border-radius:6px;color:#e0e0e0;">
+                    <option value="">Scegli archetipo avversario...</option>
+                    <option value="goblins">🔴 Goblins (Aggro)</option>
+                    <option value="burn">🔴 Burn / Sligh (Aggro)</option>
+                    <option value="stiflenought">🔵 Stiflenought (Combo-Tempo)</option>
+                    <option value="enchantress">🟢⚪ Enchantress (Combo-Control)</option>
+                    <option value="mono_black">⚫ Mono Black (Midrange)</option>
+                    <option value="landstill">⚪🔵 Landstill (Control)</option>
+                    <option value="terrageddon">🟢⚪ Terrageddon (Aggro-LD)</option>
+                    <option value="replenish">⚪🔵 Replenish (Combo)</option>
+                    <option value="elves">🟢 Elves (Aggro-Combo)</option>
+                    <option value="the_rock">⚫🟢 The Rock (Midrange)</option>
+                    <option value="stasis">🔵 Stasis (Lock)</option>
+                    <option value="psychatog">🔵⚫ Psychatog (Control-Combo)</option>
+                    <option value="madness">🔵🟢 Madness (Aggro-Tempo)</option>
+                    <option value="reanimator">⚫ Reanimator (Combo)</option>
+                    <option value="aluren">🔵⚫🟢 Aluren (Combo)</option>
+                </select>
+                <select id="matchup-games" style="padding:8px;background:#0f0f1a;border:1px solid #0f3460;border-radius:6px;color:#e0e0e0;">
+                    <option value="1">Solo G1</option>
+                    <option value="3">Match (G1+G2+G3)</option>
+                </select>
+                <button id="run-matchup-btn" style="padding:8px 16px;background:#e94560;color:#fff;border:none;border-radius:6px;cursor:pointer;">Simula!</button>
+            </div>
+            <div id="matchup-result" style="background:#0f0f1a;border-radius:8px;padding:16px;border:1px solid #0f3460;display:none;"></div>
+        </div>
+    </div>
 
     <script>
         let allData = { legal_cards: [], disputed_cards: [] };
@@ -568,14 +615,19 @@
                 tab.classList.add('active');
                 currentTab = tab.dataset.tab;
 
+                document.getElementById('card-list').classList.add('hidden');
+                document.getElementById('combo-list').classList.add('hidden');
+                document.getElementById('deckbuilder-section').classList.add('hidden');
+
                 if (currentTab === 'combos') {
-                    document.getElementById('card-list').classList.add('hidden');
                     document.getElementById('combo-list').classList.remove('hidden');
                     document.getElementById('card-count').textContent = `${combosData.length} combo conosciute`;
                     renderCombos();
+                } else if (currentTab === 'deckbuilder') {
+                    document.getElementById('deckbuilder-section').classList.remove('hidden');
+                    document.getElementById('card-count').textContent = '';
                 } else {
                     document.getElementById('card-list').classList.remove('hidden');
-                    document.getElementById('combo-list').classList.add('hidden');
                     renderCards();
                 }
             });
@@ -678,6 +730,263 @@
         }
 
         loadData();
+
+        // === DECKBUILDER ENGINE ===
+        const ARCHETYPES = {
+            goblins: { name: "Goblins", type: "Aggro", profile: {speed:5,disruption:1,resilience:2,card_advantage:2,consistency:4}, desc: "Aggro velocissimo con Lackey e Piledriver. Vince al turno 3-4." },
+            burn: { name: "Burn / Sligh", type: "Aggro", profile: {speed:4.5,disruption:2,resilience:1.5,card_advantage:1,consistency:4.5}, desc: "Danno diretto puro. 20 danni in 4-5 turni." },
+            stiflenought: { name: "Stiflenought", type: "Combo-Tempo", profile: {speed:4,disruption:3.5,resilience:3,card_advantage:3,consistency:3.5}, desc: "12/12 al turno 2 protetto da counter." },
+            enchantress: { name: "Enchantress", type: "Combo-Control", profile: {speed:2,disruption:2,resilience:4,card_advantage:5,consistency:3.5}, desc: "Engine di pesca con incantesimi. Inarrestabile nel lungo." },
+            mono_black: { name: "Mono Black", type: "Midrange", profile: {speed:3,disruption:4,resilience:3,card_advantage:3.5,consistency:4}, desc: "Discard + removal + creature efficienti." },
+            landstill: { name: "Landstill", type: "Control", profile: {speed:1.5,disruption:4.5,resilience:4,card_advantage:4.5,consistency:3.5}, desc: "Counter + Standstill + manland. Vince nel lungo." },
+            terrageddon: { name: "Terrageddon", type: "Aggro-LD", profile: {speed:3.5,disruption:3.5,resilience:2.5,card_advantage:2,consistency:3.5}, desc: "Creature + Armageddon. Chiude con Terravore." },
+            replenish: { name: "Replenish", type: "Combo", profile: {speed:3,disruption:1.5,resilience:2,card_advantage:3,consistency:3}, desc: "Riporta incantesimi dal cimitero per win." },
+            elves: { name: "Elves", type: "Aggro-Combo", profile: {speed:4,disruption:0.5,resilience:2,card_advantage:3,consistency:4}, desc: "Mana esplosivo + Natural Order o swarm." },
+            the_rock: { name: "The Rock", type: "Midrange", profile: {speed:2.5,disruption:4,resilience:4,card_advantage:3.5,consistency:3.5}, desc: "Discard + removal + Deed + creature value." },
+            stasis: { name: "Stasis", type: "Lock", profile: {speed:2,disruption:3,resilience:3,card_advantage:2.5,consistency:2.5}, desc: "Lock totale con Stasis + Chronatog/Kismet." },
+            psychatog: { name: "Psychatog", type: "Control-Combo", profile: {speed:2.5,disruption:4,resilience:3.5,card_advantage:4,consistency:3.5}, desc: "Control con kill Upheaval + Tog." },
+            madness: { name: "Madness", type: "Aggro-Tempo", profile: {speed:4,disruption:2,resilience:2.5,card_advantage:3,consistency:4}, desc: "Creature gratis via Madness + counter economici." },
+            reanimator: { name: "Reanimator", type: "Combo", profile: {speed:5,disruption:1.5,resilience:1.5,card_advantage:1.5,consistency:3}, desc: "Creatura enorme al turno 1-2. All-in." },
+            aluren: { name: "Aluren", type: "Combo", profile: {speed:3,disruption:2,resilience:3,card_advantage:3.5,consistency:3.5}, desc: "Combo creature infinite con Aluren + Harpy." },
+        };
+
+        // Matchup matrix (historical data, row vs column = win%)
+        const MATCHUP_MATRIX = {
+            goblins: {goblins:50,burn:55,stiflenought:45,enchantress:60,mono_black:45,landstill:40,terrageddon:50,replenish:55,elves:50,the_rock:40,stasis:65,psychatog:45,madness:50,reanimator:55,aluren:55},
+            burn: {goblins:45,burn:50,stiflenought:40,enchantress:55,mono_black:50,landstill:35,terrageddon:45,replenish:60,elves:55,the_rock:45,stasis:60,psychatog:40,madness:45,reanimator:60,aluren:55},
+            stiflenought: {goblins:55,burn:60,stiflenought:50,enchantress:50,mono_black:55,landstill:45,terrageddon:55,replenish:55,elves:55,the_rock:50,stasis:55,psychatog:50,madness:55,reanimator:50,aluren:50},
+            enchantress: {goblins:40,burn:45,stiflenought:50,enchantress:50,mono_black:55,landstill:55,terrageddon:45,replenish:50,elves:45,the_rock:55,stasis:40,psychatog:55,madness:45,reanimator:45,aluren:50},
+            mono_black: {goblins:55,burn:50,stiflenought:45,enchantress:45,mono_black:50,landstill:40,terrageddon:50,replenish:50,elves:55,the_rock:45,stasis:55,psychatog:45,madness:50,reanimator:50,aluren:45},
+            landstill: {goblins:60,burn:65,stiflenought:55,enchantress:45,mono_black:60,landstill:50,terrageddon:50,replenish:45,elves:60,the_rock:55,stasis:45,psychatog:50,madness:60,reanimator:40,aluren:45},
+            terrageddon: {goblins:50,burn:55,stiflenought:45,enchantress:55,mono_black:50,landstill:50,terrageddon:50,replenish:55,elves:50,the_rock:50,stasis:55,psychatog:50,madness:50,reanimator:50,aluren:50},
+            replenish: {goblins:45,burn:40,stiflenought:45,enchantress:50,mono_black:50,landstill:55,terrageddon:45,replenish:50,elves:50,the_rock:50,stasis:55,psychatog:50,madness:50,reanimator:45,aluren:50},
+            elves: {goblins:50,burn:45,stiflenought:45,enchantress:55,mono_black:45,landstill:40,terrageddon:50,replenish:50,elves:50,the_rock:40,stasis:55,psychatog:40,madness:50,reanimator:55,aluren:50},
+            the_rock: {goblins:60,burn:55,stiflenought:50,enchantress:45,mono_black:55,landstill:45,terrageddon:50,replenish:50,elves:60,the_rock:50,stasis:50,psychatog:50,madness:55,reanimator:50,aluren:50},
+            stasis: {goblins:35,burn:40,stiflenought:45,enchantress:60,mono_black:45,landstill:55,terrageddon:45,replenish:45,elves:45,the_rock:50,stasis:50,psychatog:50,madness:40,reanimator:45,aluren:45},
+            psychatog: {goblins:55,burn:60,stiflenought:50,enchantress:45,mono_black:55,landstill:50,terrageddon:50,replenish:50,elves:60,the_rock:50,stasis:50,psychatog:50,madness:55,reanimator:45,aluren:50},
+            madness: {goblins:50,burn:55,stiflenought:45,enchantress:55,mono_black:50,landstill:40,terrageddon:50,replenish:50,elves:50,the_rock:45,stasis:60,psychatog:45,madness:50,reanimator:55,aluren:50},
+            reanimator: {goblins:45,burn:40,stiflenought:50,enchantress:55,mono_black:50,landstill:60,terrageddon:50,replenish:55,elves:45,the_rock:50,stasis:55,psychatog:55,madness:45,reanimator:50,aluren:50},
+            aluren: {goblins:45,burn:45,stiflenought:50,enchantress:50,mono_black:55,landstill:55,terrageddon:50,replenish:50,elves:50,the_rock:50,stasis:55,psychatog:50,madness:50,reanimator:50,aluren:50},
+        };
+
+        const CARD_CATEGORIES = {
+            removal: ["swords to plowshares","lightning bolt","terminate","vindicate","pernicious deed","wrath of god","engineered plague","massacre","pyroclasm","firebolt","flametongue kavu","diabolic edict","chainer's edict","innocent blood","smother","snuff out","fire // ice","ghastly demise"],
+            counters: ["counterspell","force of will","daze","mana leak","forbid","circular logic","miscalculation","force spike","stifle","divert","memory lapse","arcane denial"],
+            discard: ["duress","cabal therapy","hymn to tourach","thoughtseize","unmask","gerrard's verdict","mind twist","stupor"],
+            card_draw: ["brainstorm","accumulated knowledge","fact or fiction","standstill","sylvan library","phyrexian arena","necropotence","deep analysis","impulse","opt","ponder","portent","concentrate"],
+            mana_accel: ["dark ritual","mox diamond","chrome mox","birds of paradise","llanowar elves","elvish mystic","wall of roots","gaea's cradle","ancient tomb","city of traitors"],
+            aggro: ["goblin lackey","goblin piledriver","jackal pup","savannah lions","carnophage","sarcomancy","ball lightning","grim lavamancer","mogg fanatic","wild mongrel","basking rootwalla","arrogant wurm","phyrexian negator","hypnotic specter","nantuko shade"],
+            combo: ["aluren","oath of druids","replenish","sneak attack","reanimate","entomb","survival of the fittest","recurring nightmare","pattern of rebirth","donate","illusions of grandeur","phyrexian dreadnought","stifle"],
+            lands_utility: ["wasteland","rishadan port","dust bowl","mishra's factory","treetop village","faerie conclave","nantuko monastery"],
+        };
+
+        function parseDeck(text) {
+            const lines = text.trim().split('\n');
+            const main = [], side = [];
+            let inSide = false;
+            for (let line of lines) {
+                line = line.trim();
+                if (!line || line.startsWith('//')) continue;
+                if (/^side/i.test(line)) { inSide = true; continue; }
+                const m = line.match(/^(\d+)\s*x?\s+(.+)$/i);
+                if (m) { (inSide ? side : main).push({qty:parseInt(m[1]), name:m[2].trim()}); }
+                else if (line.length > 2) { (inSide ? side : main).push({qty:1, name:line}); }
+            }
+            return {main, side};
+        }
+
+        function analyzeDeck(deck) {
+            const profile = {speed:0, disruption:0, resilience:0, card_advantage:0, consistency:0};
+            let total = deck.main.reduce((s,c)=>s+c.qty, 0);
+            let counts = {removal:0, counters:0, discard:0, card_draw:0, mana_accel:0, aggro:0, combo:0, lands_utility:0};
+
+            for (const card of deck.main) {
+                const n = card.name.toLowerCase();
+                for (const [cat, list] of Object.entries(CARD_CATEGORIES)) {
+                    if (list.some(c => n.includes(c))) { counts[cat] += card.qty; break; }
+                }
+            }
+
+            profile.speed = Math.min(5, ((counts.aggro * 2 + counts.mana_accel * 1.5 + counts.combo) / total) * 20);
+            profile.disruption = Math.min(5, ((counts.removal * 1.5 + counts.counters * 2 + counts.discard * 1.5 + counts.lands_utility * 0.5) / total) * 12);
+            profile.resilience = Math.min(5, ((counts.counters + counts.removal * 0.5 + counts.card_draw * 0.5) / total) * 15);
+            profile.card_advantage = Math.min(5, ((counts.card_draw * 2 + counts.combo) / total) * 18);
+            const fourOfs = deck.main.filter(c => c.qty === 4).length;
+            profile.consistency = Math.min(5, 1.5 + (fourOfs / 15) * 3.5);
+
+            // Round
+            for (const k of Object.keys(profile)) profile[k] = Math.round(profile[k] * 10) / 10;
+            return {profile, counts, total};
+        }
+
+        function drawRadar(canvasId, profile, color = 'rgba(233,69,96,0.3)', stroke = '#e94560') {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            const cx = w/2, cy = h/2, r = Math.min(cx,cy) - 40;
+            const axes = ['speed','disruption','resilience','card_advantage','consistency'];
+            const labels = ['Velocità','Disruption','Resilienza','Card Advantage','Consistenza'];
+            const n = 5;
+
+            ctx.clearRect(0,0,w,h);
+            // Grid
+            for (let lv=1;lv<=5;lv++){
+                ctx.beginPath();
+                for(let i=0;i<=n;i++){
+                    const a=(Math.PI*2*(i%n))/n - Math.PI/2;
+                    const x=cx+(r*lv/5)*Math.cos(a), y=cy+(r*lv/5)*Math.sin(a);
+                    i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+                }
+                ctx.strokeStyle='#0f3460';ctx.lineWidth=1;ctx.stroke();
+            }
+            // Axes + labels
+            ctx.font='11px sans-serif';ctx.fillStyle='#888';ctx.textAlign='center';
+            for(let i=0;i<n;i++){
+                const a=(Math.PI*2*i)/n - Math.PI/2;
+                ctx.beginPath();ctx.moveTo(cx,cy);
+                ctx.lineTo(cx+r*Math.cos(a),cy+r*Math.sin(a));
+                ctx.strokeStyle='#0f3460';ctx.stroke();
+                ctx.fillText(labels[i],cx+(r+22)*Math.cos(a),cy+(r+22)*Math.sin(a)+4);
+            }
+            // Profile shape
+            ctx.beginPath();
+            for(let i=0;i<=n;i++){
+                const a=(Math.PI*2*(i%n))/n - Math.PI/2;
+                const v=profile[axes[i%n]]||0;
+                const x=cx+(r*v/5)*Math.cos(a), y=cy+(r*v/5)*Math.sin(a);
+                i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+            }
+            ctx.fillStyle=color;ctx.fill();
+            ctx.strokeStyle=stroke;ctx.lineWidth=2;ctx.stroke();
+            // Dots
+            for(let i=0;i<n;i++){
+                const a=(Math.PI*2*i)/n - Math.PI/2;
+                const v=profile[axes[i]]||0;
+                ctx.beginPath();ctx.arc(cx+(r*v/5)*Math.cos(a),cy+(r*v/5)*Math.sin(a),4,0,Math.PI*2);
+                ctx.fillStyle=stroke;ctx.fill();
+            }
+        }
+
+        function calculateMatchup(deckProfile, archetypeKey, usesSide, sideboard) {
+            const arch = ARCHETYPES[archetypeKey];
+            if (!arch) return null;
+
+            // 1. Base from matrix - find closest archetype to user's deck
+            let closestArch = null, closestDist = Infinity;
+            for (const [key, a] of Object.entries(ARCHETYPES)) {
+                let dist = 0;
+                for (const axis of ['speed','disruption','resilience','card_advantage','consistency']) {
+                    dist += Math.pow(deckProfile[axis] - a.profile[axis], 2);
+                }
+                if (dist < closestDist) { closestDist = dist; closestArch = key; }
+            }
+
+            let baseWin = MATCHUP_MATRIX[closestArch]?.[archetypeKey] || 50;
+
+            // 2. Analytical adjustment based on profile comparison
+            let adjustment = 0;
+            const dp = deckProfile, ap = arch.profile;
+
+            // Speed advantage
+            if (dp.speed > ap.speed + 1) adjustment += 5;
+            if (dp.speed < ap.speed - 1) adjustment -= 5;
+
+            // Disruption vs Speed
+            if (dp.disruption > 3 && ap.speed > 3.5) adjustment += 7; // hai removal vs aggro
+            if (dp.disruption < 2 && ap.speed > 4) adjustment -= 8; // no removal vs aggro veloce
+
+            // Card advantage in long game
+            if (dp.card_advantage > ap.card_advantage + 1 && ap.speed < 3.5) adjustment += 5;
+
+            // Resilience vs disruption
+            if (dp.resilience > ap.disruption) adjustment += 3;
+            if (dp.resilience < ap.disruption - 1) adjustment -= 4;
+
+            // 3. Sideboard adjustment
+            let sideAdj = 0;
+            if (usesSide && sideboard.length > 0) {
+                // Check if side has relevant hate
+                for (const card of sideboard) {
+                    const n = card.name.toLowerCase();
+                    if (arch.type === 'Aggro' && (n.includes('pyroclasm') || n.includes('engineered plague') || n.includes('massacre') || n.includes('wrath'))) sideAdj += 3;
+                    if (arch.type === 'Combo' && (n.includes('duress') || n.includes('pyroblast') || n.includes('red elemental blast') || n.includes('stifle') || n.includes('tormod'))) sideAdj += 3;
+                    if (arch.type === 'Control' && (n.includes('pyroblast') || n.includes('red elemental blast') || n.includes('choke') || n.includes('boil'))) sideAdj += 3;
+                    if (n.includes('tormod') || n.includes('crypt') || n.includes('coffin purge')) { if (archetypeKey === 'reanimator') sideAdj += 8; }
+                }
+                sideAdj = Math.min(12, sideAdj);
+            }
+
+            const g1Win = Math.max(10, Math.min(90, baseWin + adjustment));
+            const postSideWin = Math.max(10, Math.min(90, g1Win + sideAdj));
+
+            // Match win% (best of 3)
+            let matchWin = g1Win;
+            if (usesSide) {
+                // P(win match) = P(win G1)*P(win G2 or G3 post-side) + P(lose G1)*P(win G2 and G3 post-side)
+                const p1 = g1Win/100, p2 = postSideWin/100;
+                matchWin = Math.round((p1 * (1-(1-p2)*(1-p2)) + (1-p1) * p2 * p2) * 100);
+            }
+
+            return { g1Win: Math.round(g1Win), postSideWin: Math.round(postSideWin), matchWin, closestArch, arch, sideAdj };
+        }
+
+        // Event listeners for deckbuilder
+        document.getElementById('analyze-deck-btn').addEventListener('click', () => {
+            const text = document.getElementById('deck-input').value;
+            if (!text.trim()) return;
+            const deck = parseDeck(text);
+            const {profile, counts, total} = analyzeDeck(deck);
+            drawRadar('radar-chart', profile);
+            document.getElementById('deck-stats').innerHTML = `
+                <strong>${total} carte nel main</strong> | ${deck.side.length > 0 ? deck.side.reduce((s,c)=>s+c.qty,0) + ' in side' : 'No sideboard'}<br>
+                Creature/Threats: ${counts.aggro} | Removal: ${counts.removal} | Counter: ${counts.counters}<br>
+                Discard: ${counts.discard} | Draw: ${counts.card_draw} | Mana: ${counts.mana_accel} | Combo: ${counts.combo}
+            `;
+            document.getElementById('matchup-panel').style.display = 'block';
+        });
+
+        document.getElementById('matchup-btn').addEventListener('click', () => {
+            document.getElementById('matchup-panel').style.display = 'block';
+        });
+
+        document.getElementById('run-matchup-btn').addEventListener('click', () => {
+            const text = document.getElementById('deck-input').value;
+            if (!text.trim()) return;
+            const archKey = document.getElementById('matchup-archetype').value;
+            if (!archKey) { alert('Scegli un archetipo!'); return; }
+            const games = document.getElementById('matchup-games').value;
+
+            const deck = parseDeck(text);
+            const {profile} = analyzeDeck(deck);
+            const result = calculateMatchup(profile, archKey, games === '3', deck.side);
+
+            const resultDiv = document.getElementById('matchup-result');
+            resultDiv.style.display = 'block';
+
+            const winColor = result.matchWin >= 55 ? '#4ecca3' : result.matchWin <= 45 ? '#e94560' : '#ffd700';
+            const verdict = result.matchWin >= 55 ? 'FAVORITO' : result.matchWin <= 45 ? 'SFAVORITO' : 'PARI';
+
+            let html = `
+                <div style="text-align:center;margin-bottom:12px;">
+                    <div style="font-size:2em;color:${winColor};font-weight:bold;">${result.matchWin}%</div>
+                    <div style="font-size:1.1em;color:${winColor};">${verdict}</div>
+                    <div style="color:#888;font-size:0.85em;">vs ${result.arch.name} (${result.arch.type})</div>
+                </div>
+                <div style="font-size:0.85em;color:#ccc;line-height:1.6;">
+                    <strong>G1:</strong> ${result.g1Win}% - ${100-result.g1Win}%<br>
+            `;
+            if (games === '3') {
+                html += `<strong>Post-Side:</strong> ${result.postSideWin}% - ${100-result.postSideWin}% (side bonus: +${result.sideAdj}%)<br>`;
+                html += `<strong>Match (Bo3):</strong> ${result.matchWin}% - ${100-result.matchWin}%<br>`;
+            }
+            html += `<br><strong>Perché:</strong> Il tuo mazzo è più simile a <em>${ARCHETYPES[result.closestArch]?.name || '?'}</em>. `;
+            if (result.g1Win > 55) html += `Hai un vantaggio strutturale in questo matchup grazie al tuo profilo.`;
+            else if (result.g1Win < 45) html += `L'archetipo avversario ha un vantaggio strutturale. Considera di adattare la side.`;
+            else html += `Il matchup è equilibrato. La side e il gioco faranno la differenza.`;
+            html += `</div>`;
+
+            resultDiv.innerHTML = html;
+        });
 
         // Register Service Worker for PWA
         if ('serviceWorker' in navigator) {
