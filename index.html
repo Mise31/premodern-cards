@@ -1029,35 +1029,6 @@
             if (you.profile.resilience > opp.profile.resilience + 1.5) base += 2;
             return Math.max(20, Math.min(80, base));
         }
-            // Core matchup logic based on archetype types
-            const you = ARCHETYPES[yourArch], opp = ARCHETYPES[oppArch];
-            if (!you || !opp) return 50;
-            
-            let base = 50;
-            // Aggro vs Control: depends on speed vs disruption
-            if (you.type === 'Aggro' && opp.type === 'Control') base = 42;
-            if (you.type === 'Control' && opp.type === 'Aggro') base = 58;
-            // Aggro vs Combo: aggro usually faster
-            if (you.type === 'Aggro' && opp.type === 'Combo') base = 55;
-            if (you.type === 'Combo' && opp.type === 'Aggro') base = 45;
-            // Control vs Combo: combo usually favored
-            if (you.type === 'Control' && opp.type === 'Combo') base = 45;
-            if (you.type === 'Combo' && opp.type === 'Control') base = 55;
-            // Midrange vs Aggro
-            if (you.type === 'Midrange' && opp.type === 'Aggro') base = 52;
-            if (you.type === 'Aggro' && opp.type === 'Midrange') base = 48;
-            // Midrange vs Control
-            if (you.type === 'Midrange' && opp.type === 'Control') base = 48;
-            if (you.type === 'Control' && opp.type === 'Midrange') base = 52;
-            
-            // Fine-tune with speed/disruption differential
-            if (you.profile.speed > opp.profile.speed + 1.5) base += 4;
-            if (you.profile.disruption > opp.profile.disruption + 1.5) base += 3;
-            if (you.profile.card_advantage > opp.profile.card_advantage + 1.5) base += 2;
-            if (you.profile.resilience > opp.profile.resilience + 1.5) base += 2;
-            
-            return Math.max(20, Math.min(80, base));
-        }
 
         const CARD_CATEGORIES = {
             removal: ["swords to plowshares","lightning bolt","terminate","vindicate","pernicious deed","wrath of god","engineered plague","massacre","pyroclasm","firebolt","flametongue kavu","diabolic edict","chainer's edict","innocent blood","smother","snuff out","fire // ice","ghastly demise"],
