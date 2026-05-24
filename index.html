@@ -373,7 +373,6 @@
 <body>
     <header>
         <h1>⚔️ Wild Wild Magic</h1>
-        <p class="stats" id="stats">Caricamento...</p>
     </header>
 
     <div class="controls">
@@ -558,8 +557,6 @@
                 const response = await fetch(cfg.cards + '?t=' + Date.now());
                 allData = await response.json();
                 loadedFormat = currentFormat;
-                document.getElementById('stats').textContent =
-                    `${allData.total_legal || allData.legal_cards?.length || 0} carte legali | ${allData.total_restricted || allData.total_disputed || 0} restricted/conflitto | ${cfg.title}`;
             } catch (e) {
                 allData = {legal_cards:[], restricted_cards:[], disputed_cards:[]};
                 document.getElementById('card-list').innerHTML =
