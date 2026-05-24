@@ -83,8 +83,8 @@
 
         .card-list {
             padding: 20px;
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 12px;
             max-width: 1200px;
             margin: 0 auto;
@@ -92,7 +92,8 @@
 
         .card-item {
             display: flex;
-            gap: 16px;
+            flex-direction: column;
+            gap: 8px;
             background: #16213e;
             border-radius: 10px;
             padding: 12px;
@@ -111,8 +112,7 @@
         }
 
         .card-image {
-            flex-shrink: 0;
-            width: 150px;
+            width: 100%;
             border-radius: 8px;
             overflow: hidden;
         }
@@ -350,17 +350,24 @@
         .hidden { display: none; }
 
         /* Mobile responsive */
+        @media (max-width: 900px) {
+            .card-list { grid-template-columns: repeat(3, 1fr); }
+        }
         @media (max-width: 600px) {
-            .card-item { flex-direction: column; gap: 10px; }
-            .card-image { width: 100%; max-width: 200px; margin: 0 auto; }
+            .card-list { grid-template-columns: repeat(2, 1fr); }
             .controls { flex-direction: column; }
             .controls input { min-width: 100%; }
             .combo-cards { justify-content: center; }
             .combo-card { width: 100px; }
             .combo-card img { width: 90px; }
             header h1 { font-size: 1.4em; }
-            .tab { padding: 8px 12px; font-size: 0.85em; }
+            .tab { padding: 8px 6px; font-size: 0.75em; }
         }
+
+        .card-details { display: none; padding: 8px; font-size: 0.8em; }
+        .card-item.expanded .card-details { display: block; }
+        .card-item { cursor: pointer; transition: transform 0.2s; }
+        .card-item.expanded { grid-column: span 2; }
     </style>
 </head>
 <body>
@@ -612,9 +619,9 @@
             const toRender = cards.slice(0, 100);
 
             container.innerHTML = toRender.map(card => `
-                <div class="card-item ${card.status === 'disputed' ? 'disputed' : ''}">
+                <div class="card-item ${card.status === 'disputed' ? 'disputed' : ''}" onclick="this.classList.toggle('expanded')">
                     <div class="card-image">
-                        <img src="${card.image_url}" alt="${card.name}" loading="lazy">
+                        <img src="${card.image_url}" alt="${card.name}" loading="lazy" style="width:100%;border-radius:8px;">
                     </div>
                     <div class="card-details">
                         <div>
@@ -628,7 +635,7 @@
                         <div class="card-price">
                             ${card.price_eur ? `<span class="price-tag">€${card.price_eur}</span>` : '<span class="price-tag">N/D</span>'}
                             ${card.price_eur_foil ? `<span class="price-tag foil">Foil €${card.price_eur_foil}</span>` : ''}
-                            ${card.cardmarket_url ? `<a href="${card.cardmarket_url}" target="_blank" class="cardmarket-link">→ Cardmarket (prezzo live)</a>` : ''}
+                            ${card.cardmarket_url ? `<a href="${card.cardmarket_url}" target="_blank" class="cardmarket-link">→ Cardmarket</a>` : ''}
                         </div>
                     </div>
                 </div>
@@ -675,14 +682,14 @@
         function formatMana(manaCost) {
             if (!manaCost) return '';
             return manaCost
-                .replace(/\{W\}/g, '⚪')
-                .replace(/\{U\}/g, '🔵')
-                .replace(/\{B\}/g, '⚫')
-                .replace(/\{R\}/g, '🔴')
-                .replace(/\{G\}/g, '🟢')
-                .replace(/\{(\d+)\}/g, '$1')
-                .replace(/\{X\}/g, 'X')
-                .replace(/\{C\}/g, '◇');
+                .replace(/\{W\}/g, '<span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#f9faf4;color:#333;font-size:10px;font-weight:bold;border:1px solid #ccc;">W</span>')
+                .replace(/\{U\}/g, '<span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#0e68ab;color:#fff;font-size:10px;font-weight:bold;">U</span>')
+                .replace(/\{B\}/g, '<span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#150b00;color:#fff;font-size:10px;font-weight:bold;border:1px solid #555;">B</span>')
+                .replace(/\{R\}/g, '<span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#d3202a;color:#fff;font-size:10px;font-weight:bold;">R</span>')
+                .replace(/\{G\}/g, '<span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#00733e;color:#fff;font-size:10px;font-weight:bold;">G</span>')
+                .replace(/\{(\d+)\}/g, '<span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#888;color:#fff;font-size:10px;font-weight:bold;">$1</span>')
+                .replace(/\{X\}/g, '<span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#888;color:#fff;font-size:10px;font-weight:bold;">X</span>')
+                .replace(/\{C\}/g, '<span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#aaa;color:#333;font-size:10px;font-weight:bold;">C</span>');
         }
 
         // Event listeners
