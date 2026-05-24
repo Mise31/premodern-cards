@@ -407,8 +407,14 @@
 
     <div id="home-section">
         <div style="padding:20px;max-width:900px;margin:0 auto;">
-            <h2 style="color:#e94560;margin-bottom:16px;text-align:center;">Benvenuto in Premodern Tools</h2>
-            <p style="color:#aaa;text-align:center;margin-bottom:24px;font-size:0.9em;">Carte legali, combo, deckbuilder e simulatore matchup per il formato Premodern.</p>
+            <div style="text-align:center;margin-bottom:20px;">
+                <select id="format-select" style="padding:10px 20px;font-size:1em;background:#0f3460;border:2px solid #e94560;border-radius:8px;color:#fff;cursor:pointer;">
+                    <option value="premodern">⚔️ Premodern</option>
+                    <option value="oldschool">🏛️ Old School 93/94 (EC)</option>
+                </select>
+            </div>
+            <h2 style="color:#e94560;margin-bottom:16px;text-align:center;" id="home-title">Premodern Tools</h2>
+            <p style="color:#aaa;text-align:center;margin-bottom:24px;font-size:0.9em;" id="home-subtitle">Carte legali, combo, deckbuilder e simulatore matchup.</p>
             
             <h3 style="color:#fff;margin-bottom:12px;">🔗 Risorse Esterne — Liste e Tornei</h3>
             <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;">
@@ -543,22 +549,38 @@
     <script>
         let allData = { legal_cards: [], disputed_cards: [] };
         let combosData = [];
-        let currentTab = 'legal';
+        let currentTab = 'home';
+        let currentFormat = 'premodern';
+
+        // Format-specific data files
+        const FORMAT_CONFIG = {
+            premodern: { cards: 'premodern_cards_data.json', combos: 'premodern_combos.json', title: 'Premodern Tools', subtitle: 'Carte legali, combo, deckbuilder e simulatore matchup.' },
+            oldschool: { cards: 'oldschool_cards_data.json', combos: 'oldschool_combos.json', title: 'Old School 93/94 (EC)', subtitle: 'Eternal Central rules. Alpha fino a Fallen Empires.' },
+        };
+
+        document.getElementById('format-select').addEventListener('change', (e) => {
+            currentFormat = e.target.value;
+            const cfg = FORMAT_CONFIG[currentFormat];
+            document.getElementById('home-title').textContent = cfg.title;
+            document.getElementById('home-subtitle').textContent = cfg.subtitle;
+            loadData();
+        });
 
         async function loadData() {
+            const cfg = FORMAT_CONFIG[currentFormat];
             try {
-                const response = await fetch('premodern_cards_data.json');
+                const response = await fetch(cfg.cards);
                 allData = await response.json();
                 document.getElementById('stats').textContent =
-                    `${allData.total_legal} carte legali | ${allData.total_disputed} in conflitto | Prezzi Cardmarket (via Scryfall)`;
+                    `${allData.total_legal || allData.legal_cards?.length || 0} carte legali | ${allData.total_restricted || allData.total_disputed || 0} restricted/conflitto`;
                 // Don't render cards on load - Home is shown first
             } catch (e) {
                 document.getElementById('card-list').innerHTML =
-                    '<div class="loading">Errore: esegui prima fetch_premodern_data.py per generare i dati</div>';
+                    '<div class="loading">Errore: dati non trovati per questo formato</div>';
             }
 
             try {
-                const comboResp = await fetch('premodern_combos.json');
+                const comboResp = await fetch(cfg.combos);
                 combosData = await comboResp.json();
             } catch (e) {
                 combosData = [];
@@ -566,7 +588,8 @@
         }
 
         function getCards() {
-            return currentTab === 'legal' ? allData.legal_cards : allData.disputed_cards;
+            if (currentTab === 'legal') return allData.legal_cards || [];
+            return allData.disputed_cards || allData.restricted_cards || [];
         }
 
         function filterAndSort(cards) {

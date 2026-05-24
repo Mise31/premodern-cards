@@ -1,0 +1,271 @@
+[
+  {
+    "name": "Channel + Fireball",
+    "archetype": "Channel Fireball",
+    "difficulty": "Facile",
+    "category": "Combo Kill",
+    "cards": [
+      {"name": "Channel", "role": "Converti vita in mana incolore"},
+      {"name": "Fireball", "role": "X danni a qualsiasi bersaglio"}
+    ],
+    "steps": [
+      "Gioca Channel (paga vita per ottenere mana incolore)",
+      "Paga 19 vita per ottenere 19 mana incolore",
+      "Gioca Fireball con X=20 bersagliando l'avversario",
+      "L'avversario prende 20 danni e muore!"
+    ],
+    "result": "Kill al turno 1-2 con Black Lotus/Mox"
+  },
+  {
+    "name": "The Deck (Moat + Serra Angel + Counter)",
+    "archetype": "The Deck",
+    "difficulty": "Difficile",
+    "category": "Control",
+    "cards": [
+      {"name": "Moat", "role": "Le creature senza volare non possono attaccare"},
+      {"name": "Serra Angel", "role": "4/4 volante vigilanza (attacca e blocca)"},
+      {"name": "Counterspell", "role": "Annulla qualsiasi magia"},
+      {"name": "Swords to Plowshares", "role": "Esilia qualsiasi creatura"}
+    ],
+    "steps": [
+      "Controlla il gioco con counter e removal nei primi turni",
+      "Gioca Moat: le creature avversarie non possono attaccare!",
+      "Gioca Serra Angel: vola sopra Moat e attacca",
+      "Continua a counterare tutto mentre Serra chiude la partita",
+      "Usa Library of Alexandria per pescare carte extra"
+    ],
+    "result": "Lock totale + win condition volante"
+  },
+  {
+    "name": "Underworld Dreams + Timetwister/Wheel",
+    "archetype": "Dreams Combo",
+    "difficulty": "Media",
+    "cards": [
+      {"name": "Underworld Dreams", "role": "L'avversario perde 1 vita per ogni carta pescata"},
+      {"name": "Wheel of Fortune", "role": "Tutti scartano e pescano 7 carte"},
+      {"name": "Timetwister", "role": "Tutti rimescolano e pescano 7"}
+    ],
+    "steps": [
+      "Gioca Underworld Dreams",
+      "Gioca Wheel of Fortune o Timetwister",
+      "L'avversario pesca 7 carte = perde 7 vita!",
+      "Ripeti con un secondo Wheel se possibile",
+      "14 danni da pesca + qualsiasi altro danno = letale"
+    ],
+    "result": "7-14 danni da pesca forzata"
+  },
+  {
+    "name": "Animate Dead + Tetravus / Triskelion",
+    "archetype": "Reanimator",
+    "difficulty": "Media",
+    "cards": [
+      {"name": "Animate Dead", "role": "Riporta creatura dal cimitero"},
+      {"name": "Bazaar of Baghdad", "role": "Pesca 2, scarta 3 (riempi cimitero)"},
+      {"name": "Triskelion", "role": "Entra con 3 segnalini, rimuovili per fare danno"}
+    ],
+    "steps": [
+      "Usa Bazaar of Baghdad per scartare creature grosse nel cimitero",
+      "Gioca Animate Dead bersagliando Triskelion o altra creatura grossa",
+      "Hai una creatura enorme in gioco per soli 2 mana!",
+      "Triskelion fa 3 danni diretti appena entra"
+    ],
+    "result": "Creatura grossa al turno 2 per 2 mana"
+  },
+  {
+    "name": "Power Monolith (Basalt Monolith + Power Artifact)",
+    "archetype": "Combo Mana",
+    "difficulty": "Media",
+    "cards": [
+      {"name": "Basalt Monolith", "role": "Tappa per 3 mana, si stappa per 3"},
+      {"name": "Power Artifact", "role": "Riduce il costo di attivazione di 2"}
+    ],
+    "steps": [
+      "Gioca Basalt Monolith (tappa per 3 mana incolore)",
+      "Incanta con Power Artifact (riduce costo stappare da 3 a 1)",
+      "Tappa Monolith: produci 3 mana",
+      "Paga 1 mana per stapparlo (grazie a Power Artifact)",
+      "Netto: +2 mana per ciclo = MANA INFINITO!",
+      "Usa il mana infinito con Fireball o Braingeyser"
+    ],
+    "result": "Mana incolore infinito"
+  },
+  {
+    "name": "Mirror Universe + City of Brass",
+    "archetype": "Mirror Combo",
+    "difficulty": "Media",
+    "cards": [
+      {"name": "Mirror Universe", "role": "Scambia i punti vita con l'avversario"},
+      {"name": "City of Brass", "role": "Ti fa danno quando la tappi (abbassa la tua vita)"}
+    ],
+    "steps": [
+      "Abbassa la tua vita il piu possibile (City of Brass, fetchland, ecc.)",
+      "Arriva a 1-2 vita",
+      "Attiva Mirror Universe: scambia i tuoi 1-2 vita con i 15-20 dell'avversario!",
+      "Ora tu hai 15-20 vita e lui ha 1-2",
+      "Qualsiasi danno lo finisce"
+    ],
+    "result": "Scambio vita devastante"
+  },
+  {
+    "name": "Erhnam Djinn + Armageddon (Erhnamgeddon)",
+    "archetype": "Erhnamgeddon",
+    "difficulty": "Facile",
+    "cards": [
+      {"name": "Erhnam Djinn", "role": "4/5 per 4 mana (enorme per l'epoca)"},
+      {"name": "Armageddon", "role": "Distrugge TUTTE le terre"},
+      {"name": "Birds of Paradise", "role": "Mana acceleration"}
+    ],
+    "steps": [
+      "Turno 1: Birds of Paradise o Mox",
+      "Turno 2-3: Gioca Erhnam Djinn (4/5!)",
+      "Turno 3-4: Gioca Armageddon, distruggi tutte le terre",
+      "L'avversario non ha terre e non puo rispondere",
+      "Erhnam attacca per 4 ogni turno, l'avversario muore in 5 turni"
+    ],
+    "result": "4/5 in campo + avversario senza terre"
+  },
+  {
+    "name": "Nether Void + Hymn to Tourach (Mono Black)",
+    "archetype": "Mono Black",
+    "difficulty": "Media",
+    "cards": [
+      {"name": "Hymn to Tourach", "role": "L'avversario scarta 2 carte a caso"},
+      {"name": "Nether Void", "role": "Tutte le magie costano 3 in piu"},
+      {"name": "Hypnotic Specter", "role": "Quando fa danno, l'avversario scarta a caso"}
+    ],
+    "steps": [
+      "Turno 1: Dark Ritual + Hypnotic Specter o Hymn to Tourach",
+      "Turno 2: Hymn to Tourach (l'avversario perde 2 carte a caso!)",
+      "Turno 3-4: Gioca Nether Void (tutto costa 3 in piu)",
+      "L'avversario non ha carte in mano E tutto costa troppo",
+      "Hypnotic Specter continua a togliere carte se ne pesca"
+    ],
+    "result": "Lock di mano + mana denial"
+  },
+  {
+    "name": "Atog + Berserk (Atog Aggro)",
+    "archetype": "Atog",
+    "difficulty": "Facile",
+    "cards": [
+      {"name": "Atog", "role": "Sacrifica artefatti per +2/+2"},
+      {"name": "Berserk", "role": "Raddoppia la forza di una creatura (muore a fine turno)"},
+      {"name": "Black Vise", "role": "Fa danno se l'avversario ha 5+ carte in mano"}
+    ],
+    "steps": [
+      "Gioca artefatti economici (Mox, Black Vise, ecc.)",
+      "Gioca Atog",
+      "Sacrifica 3-4 artefatti: Atog diventa 7/8 o piu",
+      "Gioca Berserk su Atog: raddoppia a 14/16!",
+      "Atog attacca per 14+ danni in un colpo!",
+      "Atog muore a fine turno ma il danno e fatto"
+    ],
+    "result": "One-shot kill con Atog + Berserk"
+  },
+  {
+    "name": "Stasis + Birds of Paradise / Kismet",
+    "archetype": "Stasis",
+    "difficulty": "Difficile",
+    "cards": [
+      {"name": "Stasis", "role": "Nessuno stappa i permanenti"},
+      {"name": "Birds of Paradise", "role": "Produce mana senza stappare (paga Stasis)"},
+      {"name": "Kismet", "role": "I permanenti avversari entrano tappati"}
+    ],
+    "steps": [
+      "Gioca Kismet: permanenti avversari entrano tappati",
+      "Gioca Stasis: nessuno stappa!",
+      "Usa Birds of Paradise per pagare il mantenimento di Stasis",
+      "L'avversario non puo stappare nulla",
+      "Vinci lentamente con danno o l'avversario concede"
+    ],
+    "result": "Lock totale"
+  },
+  {
+    "name": "Troll Disco (Sedge Troll + Disk)",
+    "archetype": "Troll Disco",
+    "difficulty": "Media",
+    "cards": [
+      {"name": "Sedge Troll", "role": "2/2 che si rigenera (non muore a Disk)"},
+      {"name": "Nevinyrral's Disk", "role": "Distrugge tutti gli artefatti, creature e incantesimi"},
+      {"name": "Mishra's Factory", "role": "Terra che diventa creatura 2/2"}
+    ],
+    "steps": [
+      "Gioca Sedge Troll (si rigenera se controlli una palude)",
+      "Gioca Nevinyrral's Disk",
+      "Attiva Disk: distrugge TUTTO (creature, artefatti, incantesimi)",
+      "Sedge Troll sopravvive perche si rigenera!",
+      "Ora hai l'unica creatura in campo, l'avversario ha il board vuoto",
+      "Ripeti ogni volta che l'avversario ricostruisce"
+    ],
+    "result": "Board wipe ripetibile, Troll sopravvive sempre"
+  },
+  {
+    "name": "Land Tax + Ivory Tower (Tax Tower)",
+    "archetype": "Tax Tower",
+    "difficulty": "Facile",
+    "cards": [
+      {"name": "Land Tax", "role": "Se hai meno terre, cerca 3 terre base dal mazzo"},
+      {"name": "Ivory Tower", "role": "Guadagni vita pari alle carte in mano oltre 4"}
+    ],
+    "steps": [
+      "Gioca Land Tax e Ivory Tower",
+      "Non giocare terre: avrai sempre meno terre dell'avversario",
+      "Land Tax si attiva ogni turno: cerca 3 terre (mano sempre piena!)",
+      "Ivory Tower ti fa guadagnare 3+ vita ogni turno",
+      "Accumuli vita e carte mentre l'avversario non puo tenerti il passo"
+    ],
+    "result": "Vita infinita + mano sempre piena"
+  },
+  {
+    "name": "Icy Manipulator + Royal Assassin",
+    "archetype": "Icy Assassin",
+    "difficulty": "Facile",
+    "cards": [
+      {"name": "Icy Manipulator", "role": "Tappa qualsiasi permanente"},
+      {"name": "Royal Assassin", "role": "Distruggi qualsiasi creatura tappata"}
+    ],
+    "steps": [
+      "Gioca Royal Assassin e Icy Manipulator",
+      "L'avversario gioca una creatura",
+      "Tappa la creatura con Icy Manipulator",
+      "Attiva Royal Assassin: distruggi la creatura tappata!",
+      "Ripeti ogni turno: nessuna creatura avversaria sopravvive"
+    ],
+    "result": "Rimozione ripetibile di qualsiasi creatura"
+  },
+  {
+    "name": "Copy Artifact + Howling Mine + Black Vise",
+    "archetype": "Vise Age",
+    "difficulty": "Media",
+    "cards": [
+      {"name": "Black Vise", "role": "Fa danno se l'avversario ha 5+ carte"},
+      {"name": "Howling Mine", "role": "Tutti pescano una carta extra"},
+      {"name": "Copy Artifact", "role": "Copia un artefatto in gioco"}
+    ],
+    "steps": [
+      "Turno 1: Black Vise (l'avversario ha 7 carte, prende 3 danni!)",
+      "Turno 2: Howling Mine (l'avversario pesca extra, mano resta piena)",
+      "Copy Artifact su Black Vise o Howling Mine per raddoppiare",
+      "L'avversario prende 3-6 danni ogni turno da Black Vise",
+      "Non riesce a giocare carte abbastanza velocemente"
+    ],
+    "result": "3-6 danni per turno da mano piena"
+  },
+  {
+    "name": "Eureka + Creature Enormi",
+    "archetype": "Eureka",
+    "difficulty": "Media",
+    "cards": [
+      {"name": "Eureka", "role": "Tutti mettono permanenti in gioco gratis dalla mano"},
+      {"name": "Colossus of Sardia", "role": "9/9 trampling"},
+      {"name": "Force of Nature", "role": "8/8 trampling"}
+    ],
+    "steps": [
+      "Riempi la mano di creature enormi",
+      "Gioca Eureka: tutti mettono permanenti gratis!",
+      "Tu metti 2-3 creature enormi (9/9, 8/8, ecc.)",
+      "L'avversario probabilmente ha meno bombe in mano",
+      "Attacca con creature enormi al turno successivo"
+    ],
+    "result": "Multiple creature enormi in gioco gratis"
+  }
+]
