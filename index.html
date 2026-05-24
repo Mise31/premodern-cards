@@ -681,15 +681,10 @@
 
         function formatMana(manaCost) {
             if (!manaCost) return '';
-            return manaCost
-                .replace(/\{W\}/g, '<span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#f9faf4;color:#333;font-size:10px;font-weight:bold;border:1px solid #ccc;">W</span>')
-                .replace(/\{U\}/g, '<span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#0e68ab;color:#fff;font-size:10px;font-weight:bold;">U</span>')
-                .replace(/\{B\}/g, '<span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#150b00;color:#fff;font-size:10px;font-weight:bold;border:1px solid #555;">B</span>')
-                .replace(/\{R\}/g, '<span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#d3202a;color:#fff;font-size:10px;font-weight:bold;">R</span>')
-                .replace(/\{G\}/g, '<span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#00733e;color:#fff;font-size:10px;font-weight:bold;">G</span>')
-                .replace(/\{(\d+)\}/g, '<span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#888;color:#fff;font-size:10px;font-weight:bold;">$1</span>')
-                .replace(/\{X\}/g, '<span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#888;color:#fff;font-size:10px;font-weight:bold;">X</span>')
-                .replace(/\{C\}/g, '<span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#aaa;color:#333;font-size:10px;font-weight:bold;">C</span>');
+            return manaCost.replace(/\{([^}]+)\}/g, (match, symbol) => {
+                const s = symbol.toUpperCase();
+                return `<img src="https://svgs.scryfall.io/card-symbols/${s}.svg" alt="${s}" style="width:18px;height:18px;vertical-align:middle;">`;
+            });
         }
 
         // Event listeners
