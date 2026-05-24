@@ -407,6 +407,7 @@
         <select id="format-select" style="padding:8px 16px;font-size:0.9em;background:#0f3460;border:2px solid #e94560;border-radius:8px;color:#fff;cursor:pointer;">
             <option value="premodern">⚔️ Premodern</option>
             <option value="oldschool">🏛️ Old School 93/94 (EC)</option>
+            <option value="alpha40">🎲 Alpha 40</option>
         </select>
     </div>
 
@@ -531,6 +532,7 @@
         const FORMAT_CONFIG = {
             premodern: { cards: 'premodern_cards_data.json', combos: 'premodern_combos.json', title: 'Premodern Tools', subtitle: 'Carte legali, combo, deckbuilder e simulatore matchup.' },
             oldschool: { cards: 'oldschool_cards_data.json', combos: 'oldschool_combos.json', title: 'Old School 93/94 (EC)', subtitle: 'Eternal Central rules. Alpha fino a Fallen Empires.' },
+            alpha40: { cards: 'alpha40_cards_data.json', combos: 'alpha40_combos.json', title: 'Alpha 40', subtitle: 'Solo carte Alpha. Mazzo 40 carte. Regole 1993. Nessuna restricted.' },
         };
 
         document.getElementById('format-select').addEventListener('change', async (e) => {
@@ -996,9 +998,22 @@
             goblins_os: {name:"Goblins",type:"Aggro",profile:{speed:4,disruption:1.5,resilience:1.5,card_advantage:1.5,consistency:3.5},desc:"Goblin King + Blood Moon. Imblocabili."},
         };
 
+        // Alpha 40 Archetypes
+        const A40_ARCHETYPES = {
+            channel_fireball: {name:"Channel Fireball",type:"Combo",profile:{speed:5,disruption:0.5,resilience:1,card_advantage:1.5,consistency:2.5},desc:"Channel + Fireball = kill al turno 1-2."},
+            blue_control_a40: {name:"Blue Control",type:"Control",profile:{speed:1.5,disruption:4.5,resilience:4,card_advantage:5,consistency:3.5},desc:"Counterspell + Mana Drain + Mahamoti Djinn."},
+            mono_black_a40: {name:"Mono Black",type:"Aggro",profile:{speed:4,disruption:3.5,resilience:2,card_advantage:2,consistency:3.5},desc:"Dark Ritual + Hypnotic Specter + Mind Twist."},
+            white_weenie_a40: {name:"White Weenie",type:"Aggro",profile:{speed:4,disruption:2,resilience:2,card_advantage:1.5,consistency:4},desc:"Savannah Lions + Serra Angel + Swords."},
+            burn_a40: {name:"Burn",type:"Aggro",profile:{speed:4.5,disruption:1.5,resilience:1,card_advantage:1,consistency:4},desc:"Lightning Bolt + Fireball. 20 danni diretti."},
+            vise_a40: {name:"Black Vise Aggro",type:"Combo",profile:{speed:4,disruption:1.5,resilience:1.5,card_advantage:2,consistency:3},desc:"Black Vise + Howling Mine. Danno passivo."},
+            icy_assassin_a40: {name:"Icy Assassin",type:"Control",profile:{speed:2,disruption:4,resilience:3,card_advantage:2.5,consistency:3},desc:"Icy Manipulator + Royal Assassin. Rimozione ripetibile."},
+        };
+
         // Get archetypes based on current format
         function getCurrentArchetypes() {
-            return currentFormat === 'oldschool' ? OS_ARCHETYPES : ARCHETYPES;
+            if (currentFormat === 'oldschool') return OS_ARCHETYPES;
+            if (currentFormat === 'alpha40') return A40_ARCHETYPES;
+            return ARCHETYPES;
         }
 
         // Populate archetype select based on format
