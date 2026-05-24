@@ -430,21 +430,39 @@
             <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
                 <select id="matchup-archetype" style="flex:1;padding:8px;background:#0f0f1a;border:1px solid #0f3460;border-radius:6px;color:#e0e0e0;">
                     <option value="">Scegli archetipo avversario...</option>
-                    <option value="goblins">🔴 Goblins (Aggro)</option>
-                    <option value="burn">🔴 Burn / Sligh (Aggro)</option>
-                    <option value="stiflenought">🔵 Stiflenought (Combo-Tempo)</option>
-                    <option value="enchantress">🟢⚪ Enchantress (Combo-Control)</option>
-                    <option value="mono_black">⚫ Mono Black (Midrange)</option>
-                    <option value="landstill">⚪🔵 Landstill (Control)</option>
-                    <option value="terrageddon">🟢⚪ Terrageddon (Aggro-LD)</option>
-                    <option value="replenish">⚪🔵 Replenish (Combo)</option>
-                    <option value="elves">🟢 Elves (Aggro-Combo)</option>
-                    <option value="the_rock">⚫🟢 The Rock (Midrange)</option>
-                    <option value="stasis">🔵 Stasis (Lock)</option>
-                    <option value="psychatog">🔵⚫ Psychatog (Control-Combo)</option>
-                    <option value="madness">🔵🟢 Madness (Aggro-Tempo)</option>
-                    <option value="reanimator">⚫ Reanimator (Combo)</option>
-                    <option value="aluren">🔵⚫🟢 Aluren (Combo)</option>
+                    <optgroup label="⚔️ AGGRO">
+                        <option value="goblins">Goblins</option>
+                        <option value="burn">Burn / Sligh</option>
+                        <option value="elves">Elves</option>
+                        <option value="madness">UG Madness</option>
+                        <option value="gw_madness">GW Madness</option>
+                        <option value="white_weenie">White Weenie</option>
+                        <option value="stompy">Stompy (Mono Green)</option>
+                    </optgroup>
+                    <optgroup label="🛡️ CONTROL">
+                        <option value="landstill">UW Landstill</option>
+                        <option value="uw_control">UW Control</option>
+                        <option value="bw_control">BW Control</option>
+                        <option value="psychatog">Psychatog</option>
+                        <option value="stasis">Stasis</option>
+                        <option value="mono_black">Mono Black</option>
+                        <option value="the_rock">The Rock (BG)</option>
+                    </optgroup>
+                    <optgroup label="💥 COMBO">
+                        <option value="stiflenought">Stiflenought</option>
+                        <option value="enchantress">Enchantress</option>
+                        <option value="replenish">Replenish</option>
+                        <option value="reanimator">Reanimator</option>
+                        <option value="aluren">Aluren</option>
+                        <option value="oath_ponza">Oath / Ponza</option>
+                        <option value="full_english">Full English Breakfast</option>
+                        <option value="devourer">Devourer Combo</option>
+                        <option value="gro_a_tog">Gro-a-Tog</option>
+                    </optgroup>
+                    <optgroup label="🏔️ MIDRANGE / LAND DENIAL">
+                        <option value="terrageddon">Terrageddon</option>
+                        <option value="ponza">RG Ponza</option>
+                    </optgroup>
                 </select>
                 <select id="matchup-games" style="padding:8px;background:#0f0f1a;border:1px solid #0f3460;border-radius:6px;color:#e0e0e0;">
                     <option value="1">Solo G1</option>
@@ -733,41 +751,68 @@
 
         // === DECKBUILDER ENGINE ===
         const ARCHETYPES = {
+            // AGGRO
             goblins: { name: "Goblins", type: "Aggro", profile: {speed:5,disruption:1,resilience:2,card_advantage:2,consistency:4}, desc: "Aggro velocissimo con Lackey e Piledriver. Vince al turno 3-4." },
             burn: { name: "Burn / Sligh", type: "Aggro", profile: {speed:4.5,disruption:2,resilience:1.5,card_advantage:1,consistency:4.5}, desc: "Danno diretto puro. 20 danni in 4-5 turni." },
-            stiflenought: { name: "Stiflenought", type: "Combo-Tempo", profile: {speed:4,disruption:3.5,resilience:3,card_advantage:3,consistency:3.5}, desc: "12/12 al turno 2 protetto da counter." },
-            enchantress: { name: "Enchantress", type: "Combo-Control", profile: {speed:2,disruption:2,resilience:4,card_advantage:5,consistency:3.5}, desc: "Engine di pesca con incantesimi. Inarrestabile nel lungo." },
-            mono_black: { name: "Mono Black", type: "Midrange", profile: {speed:3,disruption:4,resilience:3,card_advantage:3.5,consistency:4}, desc: "Discard + removal + creature efficienti." },
-            landstill: { name: "Landstill", type: "Control", profile: {speed:1.5,disruption:4.5,resilience:4,card_advantage:4.5,consistency:3.5}, desc: "Counter + Standstill + manland. Vince nel lungo." },
-            terrageddon: { name: "Terrageddon", type: "Aggro-LD", profile: {speed:3.5,disruption:3.5,resilience:2.5,card_advantage:2,consistency:3.5}, desc: "Creature + Armageddon. Chiude con Terravore." },
+            elves: { name: "Elves", type: "Aggro", profile: {speed:4,disruption:0.5,resilience:2,card_advantage:3,consistency:4}, desc: "Mana esplosivo + Natural Order o swarm." },
+            madness: { name: "UG Madness", type: "Aggro", profile: {speed:4,disruption:2,resilience:2.5,card_advantage:3,consistency:4}, desc: "Creature gratis via Madness + counter economici." },
+            gw_madness: { name: "GW Madness", type: "Aggro", profile: {speed:3.5,disruption:1.5,resilience:3,card_advantage:2.5,consistency:3.5}, desc: "Arrogant Wurm + Mongrel + Swords to Plowshares." },
+            white_weenie: { name: "White Weenie", type: "Aggro", profile: {speed:4,disruption:2,resilience:2,card_advantage:1.5,consistency:4}, desc: "Creature bianche efficienti + Crusade + Armageddon." },
+            stompy: { name: "Stompy", type: "Aggro", profile: {speed:4.5,disruption:1,resilience:1.5,card_advantage:1,consistency:4.5}, desc: "Creature verdi aggressive + Rancor + pump." },
+            // CONTROL
+            landstill: { name: "UW Landstill", type: "Control", profile: {speed:1.5,disruption:4.5,resilience:4,card_advantage:4.5,consistency:3.5}, desc: "Counter + Standstill + manland. Vince nel lungo." },
+            uw_control: { name: "UW Control", type: "Control", profile: {speed:1.5,disruption:4,resilience:4,card_advantage:4,consistency:3.5}, desc: "Wrath + Counter + Decree of Justice." },
+            bw_control: { name: "BW Control", type: "Control", profile: {speed:2,disruption:4.5,resilience:3.5,card_advantage:3.5,consistency:3.5}, desc: "Vindicate + Hymn + Phyrexian Arena + Swords." },
+            psychatog: { name: "Psychatog", type: "Control", profile: {speed:2.5,disruption:4,resilience:3.5,card_advantage:4,consistency:3.5}, desc: "Control con kill Upheaval + Tog." },
+            stasis: { name: "Stasis", type: "Control", profile: {speed:2,disruption:3,resilience:3,card_advantage:2.5,consistency:2.5}, desc: "Lock totale con Stasis + Chronatog/Kismet." },
+            mono_black: { name: "Mono Black", type: "Control", profile: {speed:3,disruption:4,resilience:3,card_advantage:3.5,consistency:4}, desc: "Discard + removal + creature efficienti." },
+            the_rock: { name: "The Rock", type: "Control", profile: {speed:2.5,disruption:4,resilience:4,card_advantage:3.5,consistency:3.5}, desc: "Discard + removal + Deed + creature value." },
+            // COMBO
+            stiflenought: { name: "Stiflenought", type: "Combo", profile: {speed:4,disruption:3.5,resilience:3,card_advantage:3,consistency:3.5}, desc: "12/12 al turno 2 protetto da counter." },
+            enchantress: { name: "Enchantress", type: "Combo", profile: {speed:2,disruption:2,resilience:4,card_advantage:5,consistency:3.5}, desc: "Engine di pesca con incantesimi. Inarrestabile nel lungo." },
             replenish: { name: "Replenish", type: "Combo", profile: {speed:3,disruption:1.5,resilience:2,card_advantage:3,consistency:3}, desc: "Riporta incantesimi dal cimitero per win." },
-            elves: { name: "Elves", type: "Aggro-Combo", profile: {speed:4,disruption:0.5,resilience:2,card_advantage:3,consistency:4}, desc: "Mana esplosivo + Natural Order o swarm." },
-            the_rock: { name: "The Rock", type: "Midrange", profile: {speed:2.5,disruption:4,resilience:4,card_advantage:3.5,consistency:3.5}, desc: "Discard + removal + Deed + creature value." },
-            stasis: { name: "Stasis", type: "Lock", profile: {speed:2,disruption:3,resilience:3,card_advantage:2.5,consistency:2.5}, desc: "Lock totale con Stasis + Chronatog/Kismet." },
-            psychatog: { name: "Psychatog", type: "Control-Combo", profile: {speed:2.5,disruption:4,resilience:3.5,card_advantage:4,consistency:3.5}, desc: "Control con kill Upheaval + Tog." },
-            madness: { name: "Madness", type: "Aggro-Tempo", profile: {speed:4,disruption:2,resilience:2.5,card_advantage:3,consistency:4}, desc: "Creature gratis via Madness + counter economici." },
             reanimator: { name: "Reanimator", type: "Combo", profile: {speed:5,disruption:1.5,resilience:1.5,card_advantage:1.5,consistency:3}, desc: "Creatura enorme al turno 1-2. All-in." },
             aluren: { name: "Aluren", type: "Combo", profile: {speed:3,disruption:2,resilience:3,card_advantage:3.5,consistency:3.5}, desc: "Combo creature infinite con Aluren + Harpy." },
+            oath_ponza: { name: "Oath / Ponza", type: "Combo", profile: {speed:3,disruption:3,resilience:3,card_advantage:3,consistency:3}, desc: "Oath of Druids + creature enormi + land destruction." },
+            full_english: { name: "Full English Breakfast", type: "Combo", profile: {speed:3.5,disruption:2,resilience:2.5,card_advantage:3,consistency:3}, desc: "Survival + Shapeshifter + Phage kill." },
+            devourer: { name: "Devourer Combo", type: "Combo", profile: {speed:3.5,disruption:1.5,resilience:2,card_advantage:2,consistency:3}, desc: "Buried Alive + Devourer + Triskelion = 20 danni." },
+            gro_a_tog: { name: "Gro-a-Tog", type: "Combo", profile: {speed:3.5,disruption:3.5,resilience:3,card_advantage:3.5,consistency:3.5}, desc: "Quirion Dryad + cantrip + counter. Tempo-combo." },
+            // MIDRANGE / LAND DENIAL
+            terrageddon: { name: "Terrageddon", type: "Midrange", profile: {speed:3.5,disruption:3.5,resilience:2.5,card_advantage:2,consistency:3.5}, desc: "Creature + Armageddon. Chiude con Terravore." },
+            ponza: { name: "RG Ponza", type: "Midrange", profile: {speed:3,disruption:3.5,resilience:2.5,card_advantage:2,consistency:3}, desc: "Land destruction + creature grosse. Nega mana." },
         };
 
-        // Matchup matrix (historical data, row vs column = win%)
-        const MATCHUP_MATRIX = {
-            goblins: {goblins:50,burn:55,stiflenought:45,enchantress:60,mono_black:45,landstill:40,terrageddon:50,replenish:55,elves:50,the_rock:40,stasis:65,psychatog:45,madness:50,reanimator:55,aluren:55},
-            burn: {goblins:45,burn:50,stiflenought:40,enchantress:55,mono_black:50,landstill:35,terrageddon:45,replenish:60,elves:55,the_rock:45,stasis:60,psychatog:40,madness:45,reanimator:60,aluren:55},
-            stiflenought: {goblins:55,burn:60,stiflenought:50,enchantress:50,mono_black:55,landstill:45,terrageddon:55,replenish:55,elves:55,the_rock:50,stasis:55,psychatog:50,madness:55,reanimator:50,aluren:50},
-            enchantress: {goblins:40,burn:45,stiflenought:50,enchantress:50,mono_black:55,landstill:55,terrageddon:45,replenish:50,elves:45,the_rock:55,stasis:40,psychatog:55,madness:45,reanimator:45,aluren:50},
-            mono_black: {goblins:55,burn:50,stiflenought:45,enchantress:45,mono_black:50,landstill:40,terrageddon:50,replenish:50,elves:55,the_rock:45,stasis:55,psychatog:45,madness:50,reanimator:50,aluren:45},
-            landstill: {goblins:60,burn:65,stiflenought:55,enchantress:45,mono_black:60,landstill:50,terrageddon:50,replenish:45,elves:60,the_rock:55,stasis:45,psychatog:50,madness:60,reanimator:40,aluren:45},
-            terrageddon: {goblins:50,burn:55,stiflenought:45,enchantress:55,mono_black:50,landstill:50,terrageddon:50,replenish:55,elves:50,the_rock:50,stasis:55,psychatog:50,madness:50,reanimator:50,aluren:50},
-            replenish: {goblins:45,burn:40,stiflenought:45,enchantress:50,mono_black:50,landstill:55,terrageddon:45,replenish:50,elves:50,the_rock:50,stasis:55,psychatog:50,madness:50,reanimator:45,aluren:50},
-            elves: {goblins:50,burn:45,stiflenought:45,enchantress:55,mono_black:45,landstill:40,terrageddon:50,replenish:50,elves:50,the_rock:40,stasis:55,psychatog:40,madness:50,reanimator:55,aluren:50},
-            the_rock: {goblins:60,burn:55,stiflenought:50,enchantress:45,mono_black:55,landstill:45,terrageddon:50,replenish:50,elves:60,the_rock:50,stasis:50,psychatog:50,madness:55,reanimator:50,aluren:50},
-            stasis: {goblins:35,burn:40,stiflenought:45,enchantress:60,mono_black:45,landstill:55,terrageddon:45,replenish:45,elves:45,the_rock:50,stasis:50,psychatog:50,madness:40,reanimator:45,aluren:45},
-            psychatog: {goblins:55,burn:60,stiflenought:50,enchantress:45,mono_black:55,landstill:50,terrageddon:50,replenish:50,elves:60,the_rock:50,stasis:50,psychatog:50,madness:55,reanimator:45,aluren:50},
-            madness: {goblins:50,burn:55,stiflenought:45,enchantress:55,mono_black:50,landstill:40,terrageddon:50,replenish:50,elves:50,the_rock:45,stasis:60,psychatog:45,madness:50,reanimator:55,aluren:50},
-            reanimator: {goblins:45,burn:40,stiflenought:50,enchantress:55,mono_black:50,landstill:60,terrageddon:50,replenish:55,elves:45,the_rock:50,stasis:55,psychatog:55,madness:45,reanimator:50,aluren:50},
-            aluren: {goblins:45,burn:45,stiflenought:50,enchantress:50,mono_black:55,landstill:55,terrageddon:50,replenish:50,elves:50,the_rock:50,stasis:55,psychatog:50,madness:50,reanimator:50,aluren:50},
-        };
+        // Matchup matrix - simplified, new archetypes get estimated values
+        function getMatchupBase(yourArch, oppArch) {
+            // Core matchup logic based on archetype types
+            const you = ARCHETYPES[yourArch], opp = ARCHETYPES[oppArch];
+            if (!you || !opp) return 50;
+            
+            let base = 50;
+            // Aggro vs Control: depends on speed vs disruption
+            if (you.type === 'Aggro' && opp.type === 'Control') base = 42;
+            if (you.type === 'Control' && opp.type === 'Aggro') base = 58;
+            // Aggro vs Combo: aggro usually faster
+            if (you.type === 'Aggro' && opp.type === 'Combo') base = 55;
+            if (you.type === 'Combo' && opp.type === 'Aggro') base = 45;
+            // Control vs Combo: combo usually favored
+            if (you.type === 'Control' && opp.type === 'Combo') base = 45;
+            if (you.type === 'Combo' && opp.type === 'Control') base = 55;
+            // Midrange vs Aggro
+            if (you.type === 'Midrange' && opp.type === 'Aggro') base = 52;
+            if (you.type === 'Aggro' && opp.type === 'Midrange') base = 48;
+            // Midrange vs Control
+            if (you.type === 'Midrange' && opp.type === 'Control') base = 48;
+            if (you.type === 'Control' && opp.type === 'Midrange') base = 52;
+            
+            // Fine-tune with speed/disruption differential
+            if (you.profile.speed > opp.profile.speed + 1.5) base += 4;
+            if (you.profile.disruption > opp.profile.disruption + 1.5) base += 3;
+            if (you.profile.card_advantage > opp.profile.card_advantage + 1.5) base += 2;
+            if (you.profile.resilience > opp.profile.resilience + 1.5) base += 2;
+            
+            return Math.max(20, Math.min(80, base));
+        }
 
         const CARD_CATEGORIES = {
             removal: ["swords to plowshares","lightning bolt","terminate","vindicate","pernicious deed","wrath of god","engineered plague","massacre","pyroclasm","firebolt","flametongue kavu","diabolic edict","chainer's edict","innocent blood","smother","snuff out","fire // ice","ghastly demise"],
@@ -871,7 +916,7 @@
             const arch = ARCHETYPES[archetypeKey];
             if (!arch) return null;
 
-            // 1. Base from matrix - find closest archetype to user's deck
+            // 1. Base from archetype comparison
             let closestArch = null, closestDist = Infinity;
             for (const [key, a] of Object.entries(ARCHETYPES)) {
                 let dist = 0;
@@ -881,7 +926,7 @@
                 if (dist < closestDist) { closestDist = dist; closestArch = key; }
             }
 
-            let baseWin = MATCHUP_MATRIX[closestArch]?.[archetypeKey] || 50;
+            let baseWin = getMatchupBase(closestArch, archetypeKey);
 
             // 2. Analytical adjustment based on profile comparison
             let adjustment = 0;
