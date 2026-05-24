@@ -1,6 +1,6 @@
 {
-  "name": "Premodern Legal Cards",
-  "short_name": "Premodern",
+  "name": "Wild Wild Magic",
+  "short_name": "WWMagic",
   "description": "Tutte le carte legali in Premodern con prezzi, combo e interazioni",
   "start_url": "/premodern-cards/index.html",
   "scope": "/premodern-cards/",
