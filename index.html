@@ -414,9 +414,10 @@
             <div style="flex:1;min-width:300px;">
                 <h3 style="color:#e94560;margin-bottom:10px;">📝 Lista Mazzo</h3>
                 <textarea id="deck-input" placeholder="Incolla la tua lista qui...&#10;Formato: 4 Lightning Bolt&#10;4 Counterspell&#10;...&#10;&#10;Sideboard&#10;3 Pyroblast&#10;2 Tormod's Crypt" style="width:100%;height:300px;background:#0f0f1a;border:1px solid #0f3460;border-radius:8px;color:#e0e0e0;padding:12px;font-family:monospace;font-size:0.85em;resize:vertical;"></textarea>
-                <div style="display:flex;gap:8px;margin-top:10px;">
+                <div style="display:flex;gap:8px;margin-top:10;">
                     <button id="analyze-deck-btn" style="flex:1;padding:10px;background:#e94560;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:0.9em;">📊 Analizza Mazzo</button>
                     <button id="matchup-btn" style="flex:1;padding:10px;background:#0f3460;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:0.9em;">⚔️ Simula Matchup</button>
+                    <button id="draw-hand-btn" style="flex:1;padding:10px;background:#2d6a4f;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:0.9em;">🃏 Pesca Mano</button>
                 </div>
             </div>
             <div style="flex:1;min-width:300px;">
@@ -471,6 +472,28 @@
                 <button id="run-matchup-btn" style="padding:8px 16px;background:#e94560;color:#fff;border:none;border-radius:6px;cursor:pointer;">Simula!</button>
             </div>
             <div id="matchup-result" style="background:#0f0f1a;border-radius:8px;padding:16px;border:1px solid #0f3460;display:none;"></div>
+        </div>
+        <div id="hand-panel" style="display:none;margin-top:20px;">
+            <h3 style="color:#e94560;margin-bottom:10px;">🃏 Mano Iniziale</h3>
+            <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+                <select id="hand-game-select" style="padding:8px;background:#0f0f1a;border:1px solid #0f3460;border-radius:6px;color:#e0e0e0;">
+                    <option value="g1">G1 (solo mainboard)</option>
+                    <option value="g2">G2/G3 (con sideboard)</option>
+                </select>
+                <div id="side-swap-panel" style="display:none;flex:1;min-width:200px;">
+                    <input type="text" id="side-in-input" placeholder="Side IN (es: 3 Pyroblast, 2 Tormod's Crypt)" style="width:100%;padding:6px;background:#0f0f1a;border:1px solid #0f3460;border-radius:6px;color:#e0e0e0;font-size:0.8em;margin-bottom:4px;">
+                    <input type="text" id="side-out-input" placeholder="Side OUT (es: 2 Counterspell, 1 Fact or Fiction)" style="width:100%;padding:6px;background:#0f0f1a;border:1px solid #0f3460;border-radius:6px;color:#e0e0e0;font-size:0.8em;">
+                </div>
+            </div>
+            <div id="side-stats" style="font-size:0.8em;color:#4ecca3;margin-bottom:8px;display:none;"></div>
+            <div id="hand-info" style="font-size:0.85em;color:#888;margin-bottom:8px;"></div>
+            <div id="hand-cards" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;"></div>
+            <div style="display:flex;gap:8px;">
+                <button id="mulligan-btn" style="padding:10px 20px;background:#b45309;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:0.9em;">🔄 Mulligan</button>
+                <button id="keep-btn" style="padding:10px 20px;background:#2d6a4f;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:0.9em;">✓ Keep</button>
+                <button id="new-game-btn" style="padding:10px 20px;background:#0f3460;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:0.9em;">🔁 Nuova Partita</button>
+            </div>
+            <div id="hand-history" style="margin-top:12px;font-size:0.8em;color:#666;"></div>
         </div>
     </div>
 
@@ -746,6 +769,125 @@
 
             container.innerHTML = html;
         }
+
+        // === HAND SIMULATOR ===
+        let currentHandSize = 7;
+        let currentDeckPool = [];
+
+        function shuffleArray(arr) {
+            const a = [...arr];
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        function buildDeckPool(deck, isPostSide, sideIn, sideOut) {
+            const pool = [];
+            for (const card of deck.main) {
+                for (let i = 0; i < card.qty; i++) pool.push(card.name);
+            }
+            if (isPostSide) {
+                // Remove side-out cards
+                for (const card of sideOut) {
+                    for (let i = 0; i < card.qty; i++) {
+                        const idx = pool.indexOf(card.name);
+                        if (idx !== -1) pool.splice(idx, 1);
+                    }
+                }
+                // Add side-in cards
+                for (const card of sideIn) {
+                    for (let i = 0; i < card.qty; i++) pool.push(card.name);
+                }
+            }
+            return pool;
+        }
+
+        function parseSideList(text) {
+            if (!text.trim()) return [];
+            return text.split(',').map(s => {
+                const m = s.trim().match(/^(\d+)\s*x?\s+(.+)$/i);
+                if (m) return {qty: parseInt(m[1]), name: m[2].trim()};
+                return {qty: 1, name: s.trim()};
+            }).filter(c => c.name);
+        }
+
+        function drawHand(size) {
+            const shuffled = shuffleArray(currentDeckPool);
+            return shuffled.slice(0, size);
+        }
+
+        function renderHand(hand, size) {
+            const container = document.getElementById('hand-cards');
+            container.innerHTML = hand.map(name => `
+                <div style="background:#16213e;border:1px solid #0f3460;border-radius:6px;padding:6px 10px;font-size:0.85em;color:#e0e0e0;cursor:pointer;" 
+                     onmouseover="this.style.borderColor='#e94560'" onmouseout="this.style.borderColor='#0f3460'">
+                    ${name}
+                </div>
+            `).join('');
+            document.getElementById('hand-info').textContent = `Carte in mano: ${hand.length} (mulligan a ${size})`;
+            if (size < 7) {
+                document.getElementById('hand-info').textContent += ` — devi mettere ${7 - size} carta/e sotto il mazzo`;
+            }
+            // Show side card probability
+            if (document.getElementById('hand-game-select').value === 'g2') {
+                const sideIn = parseSideList(document.getElementById('side-in-input').value);
+                const sideNames = sideIn.map(c => c.name.toLowerCase());
+                const sideInHand = hand.filter(c => sideNames.some(s => c.toLowerCase().includes(s)));
+                if (sideIn.length > 0) {
+                    const totalSideCards = sideIn.reduce((s,c) => s+c.qty, 0);
+                    const probSee = Math.round((1 - Math.pow((currentDeckPool.length - totalSideCards) / currentDeckPool.length, size)) * 100);
+                    document.getElementById('side-stats').style.display = 'block';
+                    document.getElementById('side-stats').innerHTML = `📊 Side IN: ${totalSideCards} carte aggiunte | Probabilità di vederne almeno 1 in mano di ${size}: <strong>${probSee}%</strong>` +
+                        (sideInHand.length > 0 ? ` | <span style="color:#ffd700;">✓ Trovate: ${sideInHand.join(', ')}</span>` : '');
+                }
+            }
+        }
+
+        function startNewHand() {
+            const text = document.getElementById('deck-input').value;
+            if (!text.trim()) return;
+            const deck = parseDeck(text);
+            const isPostSide = document.getElementById('hand-game-select').value === 'g2';
+            const sideIn = parseSideList(document.getElementById('side-in-input').value);
+            const sideOut = parseSideList(document.getElementById('side-out-input').value);
+            currentDeckPool = buildDeckPool(deck, isPostSide, sideIn, sideOut);
+            currentHandSize = 7;
+            document.getElementById('hand-panel').style.display = 'block';
+            document.getElementById('hand-history').innerHTML = '';
+            document.getElementById('mulligan-btn').style.display = '';
+            document.getElementById('keep-btn').style.display = '';
+            document.getElementById('side-stats').style.display = 'none';
+            const hand = drawHand(7);
+            renderHand(hand, 7);
+        }
+
+        document.getElementById('hand-game-select').addEventListener('change', (e) => {
+            document.getElementById('side-swap-panel').style.display = e.target.value === 'g2' ? 'block' : 'none';
+        });
+
+        document.getElementById('draw-hand-btn').addEventListener('click', startNewHand);
+        document.getElementById('new-game-btn').addEventListener('click', startNewHand);
+
+        document.getElementById('mulligan-btn').addEventListener('click', () => {
+            if (currentHandSize <= 1) {
+                document.getElementById('hand-info').textContent = 'Non puoi fare altri mulligan! Tieni questa carta.';
+                return;
+            }
+            const prevCards = document.getElementById('hand-cards').innerText;
+            const history = document.getElementById('hand-history');
+            history.innerHTML += `<div style="margin-bottom:4px;"><span style="color:#b45309;">Mulligan (${currentHandSize} → ${currentHandSize - 1}):</span> ${prevCards}</div>`;
+            currentHandSize--;
+            const hand = drawHand(7);
+            renderHand(hand, currentHandSize);
+        });
+
+        document.getElementById('keep-btn').addEventListener('click', () => {
+            document.getElementById('hand-info').innerHTML = `<span style="color:#4ecca3;">✓ Mano tenuta! (${currentHandSize} carte)</span>`;
+            document.getElementById('mulligan-btn').style.display = 'none';
+            document.getElementById('keep-btn').style.display = 'none';
+        });
 
         loadData();
 
